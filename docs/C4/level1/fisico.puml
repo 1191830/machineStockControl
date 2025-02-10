@@ -1,0 +1,24 @@
+@startuml
+node "Servidor Backend" {
+  [Flask/Django API]
+  [Business Logic]
+  [Authentication Service]
+}
+
+node "Servidor Frontend" {
+  [React App]
+}
+
+node "Banco de Dados (PostgreSQL)" {
+  [PostgreSQL Database]
+}
+
+node "Servidor de Autenticação" {
+  [Auth Server]
+}
+
+"User" --> "Servidor Frontend" : Acessa App
+"Servidor Frontend" --> "Servidor Backend" : Requisições HTTP
+"Servidor Backend" --> "Banco de Dados (PostgreSQL)" : Consulta/Armazena dados
+"Servidor Backend" --> "Servidor de Autenticação" : Valida usuário
+@enduml

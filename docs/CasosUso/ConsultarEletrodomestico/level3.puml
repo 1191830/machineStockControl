@@ -1,0 +1,30 @@
+@startuml
+!define RECTANGLE class
+
+actor "Administrador" as Admin
+
+rectangle "Frontend - React" {
+    component "Tela de Consulta de Eletrodoméstico" {
+        Admin -> "Tela de Consulta de Eletrodoméstico" : "Consulta dados do eletrodoméstico"
+        "Tela de Consulta de Eletrodoméstico" -> "API de Consulta de Eletrodoméstico" : "Envia pedido de consulta"
+    }
+}
+
+rectangle "Backend - Django" {
+    component "Controller de Eletrodomésticos" {
+        "API de Consulta de Eletrodoméstico" -> "Controller de Eletrodomésticos" : "Chama função para recuperar dados"
+    }
+    component "Serviço de Eletrodoméstico" {
+        "Controller de Eletrodomésticos" -> "Serviço de Eletrodoméstico" : "Chama lógica de negócio"
+    }
+    component "Repositório de Eletrodoméstico" {
+        "Serviço de Eletrodoméstico" -> "Repositório de Eletrodoméstico" : "Chama função para recuperar dados"
+    }
+}
+
+rectangle "Banco de Dados - PostgreSQL" {
+    component "Tabela Eletrodomésticos" {
+        "Repositório de Eletrodoméstico" -> "Tabela Eletrodomésticos" : "Consulta dados do eletrodoméstico"
+    }
+}
+@enduml

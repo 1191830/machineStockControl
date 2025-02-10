@@ -1,0 +1,30 @@
+@startuml
+!define RECTANGLE class
+
+actor "Administrador" as Admin
+
+rectangle "Frontend - React" {
+    component "Tela de Registo de Marca" {
+        Admin -> "Tela de Registo de Marca" : "Preenche dados da marca"
+        "Tela de Registo de Marca" -> "API de Registo de Marca" : "Envia dados para Registo"
+    }
+}
+
+rectangle "Backend - Django" {
+    component "Controller de Marcas" {
+        "API de Registo de Marca" -> "Controller de Marcas" : "Chama função para gravar marca"
+    }
+    component "Serviço de Marca" {
+        "Controller de Marcas" -> "Serviço de Marca" : "Chama lógica de negócio"
+    }
+    component "Repositório de Marca" {
+        "Serviço de Marca" -> "Repositório de Marca" : "Chama função para gravar marca"
+    }
+}
+
+rectangle "Banco de Dados - PostgreSQL" {
+    component "Tabela Marcas" {
+        "Repositório de Marca" -> "Tabela Marcas" : "guarda dados da marca"
+    }
+}
+@enduml

@@ -1,0 +1,10 @@
+@startuml
+actor "Administrador" as A
+actor "Sistema" as S
+
+usecase "Registar Eletrodoméstico" as UC2
+
+A --> UC2
+UC2 --> S : Armazenar dados no Banco de Dados
+
+@enduml

@@ -1,0 +1,30 @@
+@startuml
+!define RECTANGLE class
+
+actor "Administrador" as Admin
+
+rectangle "Frontend - React" {
+    component "Tela de Registo de Venda" {
+        Admin -> "Tela de Registo de Venda" : "Preenche dados da venda"
+        "Tela de Registo de Venda" -> "API de Registo de Venda" : "Envia dados da venda"
+    }
+}
+
+rectangle "Backend - Django" {
+    component "Controller de Vendas" {
+        "API de Registo de Venda" -> "Controller de Vendas" : "Chama função para guardar venda"
+    }
+    component "Serviço de Vendas" {
+        "Controller de Vendas" -> "Serviço de Vendas" : "Chama lógica de negócio"
+    }
+    component "Repositório de Vendas" {
+        "Serviço de Vendas" -> "Repositório de Vendas" : "Chama função para guardar venda"
+    }
+}
+
+rectangle "Banco de Dados - PostgreSQL" {
+    component "Tabela Vendas" {
+        "Repositório de Vendas" -> "Tabela Vendas" : "Armazena dados da venda"
+    }
+}
+@enduml

@@ -1,0 +1,10 @@
+@startuml
+actor "Administrador" as A
+actor "Banco de Dados" as DB
+
+usecase "Registar Arranjo" as UC6
+
+A --> UC6
+UC6 --> DB : Armazenar arranjo no Banco de Dados
+
+@enduml

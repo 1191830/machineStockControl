@@ -1,0 +1,75 @@
+@startuml
+actor "Usuário" as User
+
+package "Frontend (React)" {
+  [Tela Inicial]
+  [Formulário de Eletrodoméstico]
+  [Formulário de Vendas]
+  [Formulário de Arranjos]
+  [Visualização de Histórico de Preços]
+  [Tela de Login]
+}
+
+package "Backend (Python - Flask/Django)" {
+  package "Camada de Apresentação" {
+    [Controller Eletrodomesticos]
+    [Controller Vendas]
+    [Controller Arranjos]
+    [Controller Preços]
+    [Controller Autenticação]
+  }
+  
+  package "Camada de Aplicação" {
+    [Service Eletrodomesticos]
+    [Service Vendas]
+    [Service Arranjos]
+    [Service Preços]
+    [Service Autenticação]
+  }
+  
+  package "Camada de Infraestrutura" {
+    [Repository Eletrodomesticos]
+    [Repository Vendas]
+    [Repository Arranjos]
+    [Repository Preços]
+    [Repository Marcas]
+    [Repository Firebase]
+  }
+  
+  [Firebase] 
+}
+
+package "Banco de Dados (PostgreSQL)" {
+  [Tabela Eletrodomesticos]
+  [Tabela Vendas]
+  [Tabela Arranjos]
+  [Tabela Historico_Precos_Anunciados]
+  [Tabela Marcas]
+}
+
+User --> [Tela Inicial] : Navega
+[Tela Inicial] --> [Formulário de Eletrodomestico] : Preenche
+[Formulário de Eletrodomestico] --> [Controller Eletrodomesticos] : Envia dados
+[Controller Eletrodomesticos] --> [Service Eletrodomesticos] : Chama método `adicionar_eletrodomestico`
+[Service Eletrodomesticos] --> [Repository Eletrodomesticos] : Chama `adicionar()`
+[Repository Eletrodomesticos] --> [Tabela Eletrodomesticos] : Insere dados
+
+[Formulário de Vendas] --> [Controller Vendas] : Envia dados de venda
+[Controller Vendas] --> [Service Vendas] : Chama método `adicionar_venda`
+[Service Vendas] --> [Repository Vendas] : Chama `adicionar()`
+[Repository Vendas] --> [Tabela Vendas] : Insere dados
+
+[Formulário de Arranjos] --> [Controller Arranjos] : Envia dados de arranjo
+[Controller Arranjos] --> [Service Arranjos] : Chama método `adicionar_arranjo`
+[Service Arranjos] --> [Repository Arranjos] : Chama `adicionar()`
+[Repository Arranjos] --> [Tabela Arranjos] : Insere dados
+
+[Visualização de Histórico de Preços] --> [Controller Preços] : Solicita histórico de preços
+[Controller Preços] --> [Service Preços] : Chama `consultar_historico()`
+[Service Preços] --> [Repository Preços] : Chama `consultar()`
+[Repository Preços] --> [Tabela Historico_Precos_Anunciados] : Consulta dados
+
+[Controller Autenticação] --> [Service Autenticação] : Chama `autenticar_usuario()`
+[Service Autenticação] --> [Repository Firebase] : Chama método `verificar_token()`
+[Repository Firebase] --> [Firebase] : Interage com Firebase para validação de usuário
+@enduml

@@ -1,0 +1,41 @@
+@startuml
+actor "User" as User
+
+rectangle "Frontend (React)" {
+  [App React]
+  [UI Components]
+  [Forms (Vendas, Arranjos)]
+}
+
+rectangle "Backend (Python)" {
+  [API Rest (Flask/Django)]
+  [Gestão de Eletrodomésticos]
+  [Gestão de Vendas]
+  [Gestão de Arranjos]
+  [Gestão de Preços]
+  [Gestão de Marcas]
+}
+
+rectangle "Banco de Dados (PostgreSQL)" {
+  [PostgreSQL Database]
+  [Tabela Eletrodomesticos]
+  [Tabela Vendas]
+  [Tabela Arranjos]
+  [Tabela Historico_Precos_Anunciados]
+  [Tabela Marcas]
+}
+
+User --> [App React] : Interage com a aplicação
+[App React] --> [API Rest (Flask/Django)] : Envia Requisições HTTP
+[API Rest (Flask/Django)] --> [Gestão de Eletrodomesticos] : CRUD Eletrodomésticos
+[API Rest (Flask/Django)] --> [Gestão de Vendas] : CRUD Vendas
+[API Rest (Flask/Django)] --> [Gestão de Arranjos] : CRUD Arranjos
+[API Rest (Flask/Django)] --> [Gestão de Preços] : CRUD Preços
+[API Rest (Flask/Django)] --> [Gestão de Marcas] : CRUD Marcas
+[API Rest (Flask/Django)] --> [PostgreSQL Database] : Consulta/Armazena Dados
+[PostgreSQL Database] --> [Tabela Eletrodomesticos] : Contém Dados
+[PostgreSQL Database] --> [Tabela Vendas] : Contém Dados
+[PostgreSQL Database] --> [Tabela Arranjos] : Contém Dados
+[PostgreSQL Database] --> [Tabela Historico_Precos_Anunciados] : Contém Dados
+[PostgreSQL Database] --> [Tabela Marcas] : Contém Dados
+@enduml

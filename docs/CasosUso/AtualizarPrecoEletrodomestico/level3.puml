@@ -1,0 +1,30 @@
+@startuml
+!define RECTANGLE class
+
+actor "Administrador" as Admin
+
+rectangle "Frontend - React" {
+    component "Tela de Atualização de Preço" {
+        Admin -> "Tela de Atualização de Preço" : "Atualiza preço do eletrodoméstico"
+        "Tela de Atualização de Preço" -> "API de Atualização de Preço" : "Envia novo preço via API"
+    }
+}
+
+rectangle "Backend - Django" {
+    component "Controller de Eletrodomésticos" {
+        "API de Atualização de Preço" -> "Controller de Eletrodomésticos" : "Chama função para atualizar preço"
+    }
+    component "Serviço de Eletrodoméstico" {
+        "Controller de Eletrodomésticos" -> "Serviço de Eletrodoméstico" : "Chama lógica de atualização"
+    }
+    component "Repositório de Eletrodoméstico" {
+        "Serviço de Eletrodoméstico" -> "Repositório de Eletrodoméstico" : "Chama função para atualizar preço"
+    }
+}
+
+rectangle "Banco de Dados - PostgreSQL" {
+    component "Tabela Eletrodomésticos" {
+        "Repositório de Eletrodoméstico" -> "Tabela Eletrodomésticos" : "Atualiza preço no banco de dados"
+    }
+}
+@enduml

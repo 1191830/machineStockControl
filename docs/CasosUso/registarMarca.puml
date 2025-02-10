@@ -1,0 +1,10 @@
+@startuml
+actor "Administrador" as A
+actor "Banco de Dados" as DB
+
+usecase "Registar Marca" as UC9
+
+A --> UC9
+UC9 --> DB : Armazenar dados da marca no Banco de Dados
+
+@enduml

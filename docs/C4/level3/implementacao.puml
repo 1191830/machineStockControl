@@ -1,0 +1,75 @@
+@startuml
+actor "Usuário" as User
+
+package "Frontend (React)" {
+  [Tela Inicial]
+  [Formulário de Eletrodoméstico]
+  [Formulário de Vendas]
+  [Formulário de Arranjos]
+  [Visualização de Histórico de Preços]
+  [Tela de Login]
+}
+
+package "Backend (Python - Flask/Django)" {
+  package "Camada de Apresentação" {
+    [Controller Eletrodomesticos]
+    [Controller Vendas]
+    [Controller Arranjos]
+    [Controller Preços]
+    [Controller Autenticação]
+  }
+  
+  package "Camada de Aplicação" {
+    [Service Eletrodomesticos]
+    [Service Vendas]
+    [Service Arranjos]
+    [Service Preços]
+    [Service Autenticação]
+  }
+  
+  package "Camada de Infraestrutura" {
+    [Repository Eletrodomesticos]
+    [Repository Vendas]
+    [Repository Arranjos]
+    [Repository Preços]
+    [Repository Marcas]
+    [Repository Firebase]
+  }
+  
+  [Firebase] 
+}
+
+package "Banco de Dados (PostgreSQL)" {
+  [Tabela Eletrodomesticos]
+  [Tabela Vendas]
+  [Tabela Arranjos]
+  [Tabela Historico_Precos_Anunciados]
+  [Tabela Marcas]
+}
+
+User --> [Tela Inicial] : Navega
+[Tela Inicial] --> [Formulário de Eletrodoméstico] : Preenche
+[Formulário de Eletrodoméstico] --> [Controller Eletrodomesticos] : Envia dados
+[Controller Eletrodomesticos] --> [Service Eletrodomesticos] : Chama métodos
+[Service Eletrodomesticos] --> [Repository Eletrodomesticos] : Acessa dados
+[Repository Eletrodomesticos] --> [Tabela Eletrodomesticos] : Consulta/Armazena Dados
+
+[Formulário de Vendas] --> [Controller Vendas] : Envia dados de Venda
+[Controller Vendas] --> [Service Vendas] : Chama métodos
+[Service Vendas] --> [Repository Vendas] : Acessa dados
+[Repository Vendas] --> [Tabela Vendas] : Insere dados
+
+[Formulário de Arranjos] --> [Controller Arranjos] : Envia dados de Arranjo
+[Controller Arranjos] --> [Service Arranjos] : Chama métodos
+[Service Arranjos] --> [Repository Arranjos] : Acessa dados
+[Repository Arranjos] --> [Tabela Arranjos] : Insere dados
+
+[Visualização de Histórico de Preços] --> [Controller Preços] : Requisição para preços anteriores
+[Controller Preços] --> [Service Preços] : Chama métodos
+[Service Preços] --> [Repository Preços] : Acessa dados
+[Repository Preços] --> [Tabela Historico_Precos_Anunciados] : Consulta preços
+
+[Controller Autenticação] --> [Service Autenticação] : Chama métodos
+[Service Autenticação] --> [Repository Firebase] : Interage com Firebase
+[Repository Firebase] --> [Firebase] : Envia/recebe dados de autenticação
+@enduml

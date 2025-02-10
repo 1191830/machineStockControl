@@ -1,0 +1,11 @@
+@startuml
+!define RECTANGLE class
+
+actor "Administrador" as Admin
+actor "Banco de Dados" as DB
+
+rectangle "Sistema de Gestão de Eletrodomésticos" {
+    Admin -> "Sistema de Gestão de Eletrodomésticos" : "Registar arranjo"
+    "Sistema de Gestão de Eletrodomésticos" -> DB : "Armazenar dados de arranjo"
+}
+@enduml

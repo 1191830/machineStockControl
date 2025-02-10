@@ -1,0 +1,30 @@
+@startuml
+!define RECTANGLE class
+
+actor "Administrador" as Admin
+
+rectangle "Frontend - React" {
+    component "Tela de Registo de Arranjo" {
+        Admin -> "Tela de Registo de Arranjo" : "Preenche dados do arranjo"
+        "Tela de Registo de Arranjo" -> "API de Registo de Arranjo" : "Envia dados do arranjo"
+    }
+}
+
+rectangle "Backend - Django" {
+    component "Controller de Arranjo" {
+        "API de Registo de Arranjo" -> "Controller de Arranjo" : "Chama função para guardar arranjo"
+    }
+    component "Serviço de Arranjo" {
+        "Controller de Arranjo" -> "Serviço de Arranjo" : "Chama lógica de negócio"
+    }
+    component "Repositório de Arranjo" {
+        "Serviço de Arranjo" -> "Repositório de Arranjo" : "Chama função para guardar arranjo"
+    }
+}
+
+rectangle "Banco de Dados - PostgreSQL" {
+    component "Tabela Arranjo" {
+        "Repositório de Arranjo" -> "Tabela Arranjo" : "Armazena dados do arranjo"
+    }
+}
+@enduml

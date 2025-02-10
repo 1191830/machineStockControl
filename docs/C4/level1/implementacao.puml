@@ -1,0 +1,23 @@
+@startuml
+actor "User" as User
+
+rectangle "Frontend (React)" {
+  [React App]
+}
+
+rectangle "Backend (Python)" {
+  [Flask/Django API]
+  [Business Logic]
+  [Authentication Service]
+}
+
+rectangle "Banco de Dados (PostgreSQL)" {
+  [PostgreSQL Database]
+}
+
+User --> [React App] : Usa
+[React App] --> [Flask/Django API] : Requisições HTTP (RESTful)
+[Flask/Django API] --> [PostgreSQL Database] : Consulta / Armazena dados
+[Flask/Django API] --> [Business Logic] : Processa dados
+[Flask/Django API] --> [Authentication Service] : Validação de usuários
+@enduml

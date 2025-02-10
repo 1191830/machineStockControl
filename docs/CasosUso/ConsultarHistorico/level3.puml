@@ -1,0 +1,30 @@
+@startuml
+!define RECTANGLE class
+
+actor "Administrador" as Admin
+
+rectangle "Frontend - React" {
+    component "Tela de Consulta de Histórico de Preços" {
+        Admin -> "Tela de Consulta de Histórico de Preços" : "Consulta histórico de preços"
+        "Tela de Consulta de Histórico de Preços" -> "API de Consulta de Histórico de Preços" : "Envia pedido de consulta"
+    }
+}
+
+rectangle "Backend - Django" {
+    component "Controller de Histórico de Preços" {
+        "API de Consulta de Histórico de Preços" -> "Controller de Histórico de Preços" : "Chama função para recuperar histórico"
+    }
+    component "Serviço de Histórico de Preços" {
+        "Controller de Histórico de Preços" -> "Serviço de Histórico de Preços" : "Chama lógica de negócio"
+    }
+    component "Repositório de Histórico de Preços" {
+        "Serviço de Histórico de Preços" -> "Repositório de Histórico de Preços" : "Chama função para recuperar histórico"
+    }
+}
+
+rectangle "Banco de Dados - PostgreSQL" {
+    component "Tabela Histórico de Preços" {
+        "Repositório de Histórico de Preços" -> "Tabela Histórico de Preços" : "Consulta dados do histórico"
+    }
+}
+@enduml

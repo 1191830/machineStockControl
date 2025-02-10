@@ -1,0 +1,10 @@
+@startuml
+actor "Administrador" as A
+actor "Banco de Dados" as DB
+
+usecase "Consultar Histórico de Preços" as UC7
+
+A --> UC7
+UC7 --> DB : Consultar histórico de preços
+
+@enduml

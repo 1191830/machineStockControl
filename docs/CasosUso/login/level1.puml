@@ -1,0 +1,11 @@
+@startuml
+!define RECTANGLE class
+
+actor "Administrador" as Admin
+actor "Sistema Firebase" as Firebase
+
+rectangle "Sistema de Gestão de Eletrodomésticos" {
+    Admin -> "Sistema de Gestão de Eletrodomésticos" : "Autenticação do utilizador"
+    "Sistema de Gestão de Eletrodomésticos" -> Firebase : "Verificar credenciais de autenticação"
+}
+@enduml

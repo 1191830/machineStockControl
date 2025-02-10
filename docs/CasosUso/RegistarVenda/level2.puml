@@ -1,0 +1,19 @@
+@startuml
+!define RECTANGLE class
+
+actor "Administrador" as Admin
+
+rectangle "Sistema de Gestão de Eletrodomésticos" {
+    rectangle "Frontend - React" {
+        Admin -> "Frontend - React" : "Preenche dados de venda"
+    }
+
+    rectangle "Backend - Django" {
+        "Frontend - React" -> "Backend - Django" : "Envia dados da venda via API"
+    }
+
+    rectangle "Banco de Dados - PostgreSQL" {
+        "Backend - Django" -> "Banco de Dados - PostgreSQL" : "Armazenar dados da venda"
+    }
+}
+@enduml

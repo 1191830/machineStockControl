@@ -1,0 +1,59 @@
+@startuml
+
+entity "Marcas" as M {
+  +id: SERIAL
+  +nome: VARCHAR(100)
+  +categoria: VARCHAR(100)
+}
+
+entity "Eletrodomesticos" as E {
+  +id: SERIAL
+  +nome: VARCHAR(100)
+  +descricao: TEXT
+  +data_compra: DATE
+  +preco_compra: DECIMAL(10, 2)
+  +preco_anunciado_atual: DECIMAL(10, 2)
+  +tipo: VARCHAR(10)
+  +marca_id: INTEGER
+}
+
+entity "Historico_Precos_Anunciados" as H {
+  +id: SERIAL
+  +eletrodomestico_id: INTEGER
+  +preco_anunciado: DECIMAL(10, 2)
+  +data_alteracao: DATE
+}
+
+entity "Vendas" as V {
+  +id: SERIAL
+  +eletrodomestico_id: INTEGER
+  +data_venda: DATE
+  +preco_venda: DECIMAL(10, 2)
+  +garantia_meses: INTEGER
+  +contacto_comprador: VARCHAR(100)
+}
+
+entity "Arranjos" as A {
+  +id: SERIAL
+  +eletrodomestico_id: INTEGER
+  +data_arranjo: DATE
+  +descricao: TEXT
+  +preco_pago: DECIMAL(10, 2)
+}
+
+entity "Arranjos_Realizados" as AR {
+  +id: SERIAL
+  +eletrodomestico_id: INTEGER
+  +data_arranjo: DATE
+  +descricao: TEXT
+  +custo_materiais: DECIMAL(10, 2)
+  +preco_pago_cliente: DECIMAL(10, 2)
+}
+
+M --{ E : "tem"
+E --{ H : "tem" 
+E --{ V : "é vendido em"
+E --{ A : "tem" 
+E --{ AR : "tem"
+
+@enduml

@@ -1,0 +1,26 @@
+@startuml
+node "Servidor Frontend" {
+  [App React]
+  [Nginx (para servir o React)]
+}
+
+node "Servidor Backend" {
+  [Flask/Django API]
+  [Nginx (reverse proxy)]
+  [Worker (Processamento)]
+}
+
+node "Servidor de Banco de Dados" {
+  [PostgreSQL Database]
+}
+
+node "Serviço de Autenticação" {
+  [Firebase Authentication]
+}
+
+"User" --> "Servidor Frontend" : Navega na aplicação
+"Servidor Frontend" --> "Servidor Backend" : Requisições HTTP
+"Servidor Backend" --> "Servidor de Banco de Dados" : Consulta/Armazena Dados
+"Servidor Backend" --> "Serviço de Autenticação" : Valida Usuário
+"Servidor Backend" --> "Nginx (reverse proxy)" : Encaminha tráfego
+@enduml

@@ -1,0 +1,14 @@
+@startuml
+actor "Administrador" as A
+actor "Sistema" as S
+actor "Banco de Dados" as DB
+
+usecase "Atualizar Preço" as UC3
+usecase "Registrar Histórico de Preço" as UC4
+
+A --> UC3
+UC3 --> S : Atualizar preço no Banco
+S --> UC4
+UC4 --> DB : Registrar histórico de alteração de preço
+
+@enduml

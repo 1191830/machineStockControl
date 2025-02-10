@@ -1,0 +1,10 @@
+@startuml
+actor "Administrador" as A
+actor "Banco de Dados" as DB
+
+usecase "Registar Venda" as UC5
+
+A --> UC5
+UC5 --> DB : Inserir venda no Banco de Dados
+
+@enduml

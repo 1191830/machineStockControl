@@ -1,0 +1,10 @@
+@startuml
+actor "User" as U
+actor "Banco de Dados" as DB
+
+usecase "Consultar Eletrodoméstico" as UC8
+
+U --> UC8
+UC8 --> DB : Consultar dados do eletrodoméstico
+
+@enduml

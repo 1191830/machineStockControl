@@ -1,0 +1,22 @@
+@startuml
+node "Servidor Frontend" {
+  [App React]
+}
+
+node "Servidor Backend" {
+  [Flask/Django API]
+  [Gestão de Eletrodomesticos]
+  [Gestão de Vendas]
+  [Gestão de Arranjos]
+  [Gestão de Preços]
+  [Gestão de Marcas]
+}
+
+node "Servidor de Banco de Dados" {
+  [PostgreSQL Database]
+}
+
+"User" --> "Servidor Frontend" : Acede ao sistema
+"Servidor Frontend" --> "Servidor Backend" : Requisições HTTP
+"Servidor Backend" --> "Servidor de Banco de Dados" : Requisições SQL (CRUD)
+@enduml

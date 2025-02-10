@@ -1,0 +1,64 @@
+@startuml
+entity "Eletrodomesticos" as E {
+  +id: SERIAL
+  +nome: VARCHAR(100)
+  +descricao: TEXT
+  +data_compra: DATE
+  +preco_compra: DECIMAL(10, 2)
+  +preco_anunciado_atual: DECIMAL(10, 2)
+  +tipo: VARCHAR(10)
+  +marca_id: INTEGER
+  +adicionar_eletrodomestico(nome, descricao, data_compra, preco_compra, tipo, marca_id)
+  +atualizar_preco(preco_anunciado_atual)
+  +vender(preco_venda, garantia_meses, contacto_comprador)
+  +arranjar(data_arranjo, descricao, preco_pago)
+}
+
+entity "Marcas" as M {
+  +id: SERIAL
+  +nome: VARCHAR(100)
+  +categoria: VARCHAR(100)
+  +adicionar_marca(nome, categoria)
+}
+
+entity "Vendas" as V {
+  +id: SERIAL
+  +eletrodomestico_id: INTEGER
+  +data_venda: DATE
+  +preco_venda: DECIMAL(10, 2)
+  +garantia_meses: INTEGER
+  +contacto_comprador: VARCHAR(100)
+  +adicionar_venda(eletrodomestico_id, preco_venda, garantia_meses, contacto_comprador)
+}
+
+entity "Arranjos" as A {
+  +id: SERIAL
+  +eletrodomestico_id: INTEGER
+  +data_arranjo: DATE
+  +descricao: TEXT
+  +preco_pago: DECIMAL(10, 2)
+  +adicionar_arranjo(eletrodomestico_id, data_arranjo, descricao, preco_pago)
+}
+
+entity "Historico_Precos_Anunciados" as H {
+  +id: SERIAL
+  +eletrodomestico_id: INTEGER
+  +preco_anunciado: DECIMAL(10, 2)
+  +data_alteracao: DATE
+  +adicionar_historico_preco(eletrodomestico_id, preco_anunciado, data_alteracao)
+}
+
+entity "Firebase" as F {
+  +id: SERIAL
+  +usuario_email: VARCHAR(100)
+  +usuario_senha: VARCHAR(100)
+  +autenticar(email, senha)
+  +verificar_token(token)
+}
+
+E --{ V : "tem"
+E --{ A : "tem"
+E --{ H : "tem"
+E --{ M : "tem"
+F --{ E : "autentica"
+@enduml
