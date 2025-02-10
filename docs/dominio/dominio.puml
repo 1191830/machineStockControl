@@ -6,6 +6,11 @@ entity "Marcas" as M {
   +categoria: VARCHAR(100)
 }
 
+entity "Tipo_Eletrodomestico" as T {
+  +id: SERIAL
+  +nome: VARCHAR(100)
+}
+
 entity "Eletrodomesticos" as E {
   +id: SERIAL
   +nome: VARCHAR(100)
@@ -13,7 +18,7 @@ entity "Eletrodomesticos" as E {
   +data_compra: DATE
   +preco_compra: DECIMAL(10, 2)
   +preco_anunciado_atual: DECIMAL(10, 2)
-  +tipo: VARCHAR(10)
+  +tipo_eletrodomestico_id: INTEGER  
   +marca_id: INTEGER
 }
 

@@ -34,7 +34,7 @@ Este projeto visa o desenvolvimento de um sistema para controlo de stock de elet
 - **Tabela `Eletrodomesticos`**: Contém informações básicas sobre os eletrodomésticos e referencia a tabela de marcas.
 - **Tabela `Historico_Precos_Anunciados`**: Guarda o histórico de alterações no preço anunciado de cada eletrodoméstico.
 - **Tabela `Vendas`**: Registra os dados relacionados à venda dos produtos.
-- **Tabela `Arranjos`**: Registra os arranjos realizados por terceiros em eletrodomésticos.
+- **Tabela `Arranjos`**: Registra os arranjos realizados nos eletrodomesticos comprados.
 - **Tabela `Arranjos_Realizados`**: Contém informações sobre os arranjos realizados pela sua empresa, incluindo custos e preços pagos.
 
 ## Tecnologias Utilizadas
