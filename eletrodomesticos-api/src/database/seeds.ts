@@ -44,8 +44,8 @@ const seedDatabase = async () => {
         preco_compra: 500.0,
         preco_anunciado_atual: 800.0,
         tipo: TipoEletrodomesticoEnum.VENDA,
-        marca_id: marcas[0].id,
-        tipo_id: tipos[0].id,
+        marca: marcas[0],
+        tipoEletrodomestico: tipos[0],
       },
       {
         nome: "Frigorifico Compbinado LG",
@@ -54,28 +54,28 @@ const seedDatabase = async () => {
         preco_compra: 200.0,
         preco_anunciado_atual: 400.0,
         tipo: TipoEletrodomesticoEnum.VENDA,
-        marca_id: marcas[1].id,
-        tipo_id: tipos[1].id,
+        marca: marcas[1],
+        tipoEletrodomestico: tipos[1],
       },
       {
         nome: "Maquina Lavar Louça Americana Whirpool",
         descricao: "Maquina Lavar Louça Americana Whirpool",
         data_compra: new Date("2023-02-15"),
         tipo: TipoEletrodomesticoEnum.ARRANJO,
-        marca_id: marcas[2].id,
-        tipo_id: tipos[2].id,
+        marca: marcas[2],
+        tipoEletrodomestico: tipos[2],
       },
     ]);
 
     // Inserir histórico de preços anunciados
     await historicoRepo.save([
       {
-        eletrodomestico_id: eletrodomesticos[0].id,
+        eletrodomestico: eletrodomesticos[0],
         preco_anunciado: 700.0,
         data_alteracao: new Date("2023-05-01"),
       },
       {
-        eletrodomestico_id: eletrodomesticos[1].id,
+        eletrodomestico: eletrodomesticos[1],
         preco_anunciado: 350.0,
         data_alteracao: new Date("2023-06-10"),
       },
@@ -84,7 +84,7 @@ const seedDatabase = async () => {
     // Inserir vendas
     await vendasRepo.save([
       {
-        eletrodomestico_id: eletrodomesticos[0].id,
+        eletrodomestico: eletrodomesticos[0],
         data_venda: new Date("2023-07-10"),
         preco_venda: 750.0,
         garantia_meses: 12,
@@ -95,7 +95,7 @@ const seedDatabase = async () => {
     // Inserir arranjos
     const arranjos = await arranjosRepo.save([
       {
-        eletrodomestico_id: eletrodomesticos[1].id,
+        eletrodomestico: eletrodomesticos[1],
         data_arranjo: new Date("2023-08-20"),
         descricao: "troca condensador",
         preco_pago: 200.0,
@@ -105,7 +105,7 @@ const seedDatabase = async () => {
     // Inserir arranjos realizados
     await arranjosRealizadosRepo.save([
       {
-        eletrodomestico_id: eletrodomesticos[2].id,
+        eletrodomestico: eletrodomesticos[2],
         data_arranjo: new Date("2023-08-21"),
         descricao: "Substituição de peças",
         custo_materiais: 100.0,

@@ -42,4 +42,8 @@ Este projeto visa o desenvolvimento de um sistema para controlo de stock de elet
 - **Banco de Dados**: PostgreSQL (utilizando SQL para definir as tabelas e relacionamentos)
 - **Linguagem de Programação**: React e Python (app simples para uso interno nao necessitando de grande escalabiliade por isso optou-se por linguagem simples)
 
-## Modelo de Dados (PlantUML)
+## How to
+
+Run docker compose to get the postgres db and pg admin
+Access pgadmin through port 5050 enter username and password to pgadmin and select the bd eletrodomesticos.
+Run node with command npm run dev
