@@ -1,7 +1,8 @@
-// server.ts
+import 'dotenv/config';
 import express, { Request, Response } from "express";
 import "reflect-metadata"
 import "./container"
+import cors from 'cors';
 import { AppDataSource } from "./AppDataSource"; // Importe a configuração do TypeORM
 import { marcaRoutes } from "./modules/marcas/routes/Marca.routes";
 import { tipoEletrodomesticoRoutes } from "./modules/tipoEletrodomestico/routes/TipoEletrodomestico.routes";
@@ -12,7 +13,11 @@ import { historicoPrecoRoutes } from "./modules/historicoPreco/routes/HistoricoP
 const app = express();
 
 // Middleware para parsear JSON
-app.use(express.json());
+app.use(cors({
+  origin: 'http://localhost:5173', // Apenas permitir frontend
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],
+  allowedHeaders: ['Content-Type', 'Authorization'],
+}));
 
 // Registra as rotas
 app.use("/marcas", marcaRoutes);
