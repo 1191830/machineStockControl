@@ -1,8 +1,7 @@
-// hooks/useEletrodomesticos.ts
 import { useEffect, useState } from "react";
 import { EletrodomesticoService } from "../services/EletrodomesticoService";
 import type { EletrodomesticoViewModel } from "../viewModels/EletrodomesticoViewModel";
-import type { EletrodomesticoModel } from "../models/EletrodomesticoModel";
+import type { CreateEletrodomesticoModel, EletrodomesticoModel, UpdateEletrodomesticoModel } from "../models/EletrodomesticoModel";
 
 function mapModelToViewModel(item: EletrodomesticoModel): EletrodomesticoViewModel & { id: number } {
   return {
@@ -10,23 +9,32 @@ function mapModelToViewModel(item: EletrodomesticoModel): EletrodomesticoViewMod
     nome: item.nome,
     descricao: item.descricao,
     dataCompra: new Date(item.data_compra).toLocaleDateString(),
-    precoCompra: `${Number(item.preco_compra).toFixed(2)} €`,
-    precoAnunciadoAtual: `${Number(item.preco_anunciado_atual).toFixed(2)} €`,
-    tipo: { nome: item.tipoEletrodomestico?.nome },
-    marca: { nome: item.marca?.nome, categoria: item.marca?.categoria }
+    precoCompra: item.preco_compra,
+    precoAnunciadoAtual: item.preco_anunciado_atual,
+    tipo: item.tipo,
+    tipoEletrodomestico: { id: item.tipoEletrodomestico?.id ?? 0, nome: item.tipoEletrodomestico?.nome },
+    marca: { id: item.marca?.id ?? 0, nome: item.marca?.nome, categoria: item.marca?.categoria }
   };
 }
 
-function mapViewModelToModel(item: EletrodomesticoViewModel): EletrodomesticoModel {
+function mapViewModelToCreateModel(item: EletrodomesticoViewModel): CreateEletrodomesticoModel {
   return {
-    id: 0, // Placeholder, backend should ignore or assign a real id
     nome: item.nome,
     descricao: item.descricao,
-    data_compra: new Date(item.dataCompra).toISOString(),
-    preco_compra: parseFloat(item.precoCompra.replace("€", "").trim()),
-    preco_anunciado_atual: parseFloat(item.precoAnunciadoAtual.replace("€", "").trim()),
-    tipoEletrodomestico: { id: 0, nome: item.tipo.nome },
-    marca: { id: 0, nome: item.marca.nome, categoria: item.marca.categoria ?? "" }
+    data_compra: new Date(item.dataCompra),
+    preco_compra: item.precoCompra,
+    preco_anunciado_atual: item.precoAnunciadoAtual,
+    tipo: item.tipo,
+    tipo_id: item.tipoEletrodomestico.id,
+    marca_id: item.marca.id,
+  };
+}
+
+function mapViewModelToUpdateModel(item: EletrodomesticoViewModel): UpdateEletrodomesticoModel {
+  return {
+    nome: item.nome,
+    descricao: item.descricao,
+    preco_anunciado_atual: item.precoAnunciadoAtual,
   };
 }
 
@@ -36,6 +44,7 @@ export function useEletrodomesticos() {
 
   async function fetchData() {
     try {
+      setLoading(true); // Adicionei isto para garantir que volta a mostrar loading se quiseres
       const data = await EletrodomesticoService.getAll();
       const mapped = data.map(mapModelToViewModel);
       setEletrodomesticos(mapped);
@@ -47,13 +56,13 @@ export function useEletrodomesticos() {
   }
 
   async function createEletrodomestico(data: EletrodomesticoViewModel) {
-    const model = mapViewModelToModel(data);
+    const model = mapViewModelToCreateModel(data);
     const created = await EletrodomesticoService.create(model);
     setEletrodomesticos(prev => [...prev, mapModelToViewModel(created)]);
   }
 
   async function updateEletrodomestico(id: number, data: EletrodomesticoViewModel) {
-    const model = mapViewModelToModel(data);
+    const model = mapViewModelToUpdateModel(data);
     const updated = await EletrodomesticoService.update(id, model);
     setEletrodomesticos(prev => prev.map(item => item.id === id ? mapModelToViewModel(updated) : item));
   }
@@ -65,5 +74,5 @@ export function useEletrodomesticos() {
 
   useEffect(() => { fetchData(); }, []);
 
-  return { eletrodomesticos, loading, createEletrodomestico, updateEletrodomestico, deleteEletrodomestico };
+  return { eletrodomesticos, loading, createEletrodomestico, updateEletrodomestico, deleteEletrodomestico, refetch: fetchData };
 }

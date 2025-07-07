@@ -1,6 +1,6 @@
 // services/EletrodomesticoService.ts
 import api from "../api/axiosConfig";
-import type { EletrodomesticoModel } from "../models/EletrodomesticoModel";
+import type { CreateEletrodomesticoModel, EletrodomesticoModel, UpdateEletrodomesticoModel } from "../models/EletrodomesticoModel";
 
 export class EletrodomesticoService {
   static async getAll(): Promise<EletrodomesticoModel[]> {
@@ -8,12 +8,12 @@ export class EletrodomesticoService {
     return response.data;
   }
 
-  static async create(data: EletrodomesticoModel): Promise<EletrodomesticoModel> {
+  static async create(data: CreateEletrodomesticoModel): Promise<EletrodomesticoModel> {
     const response = await api.post("/eletrodomesticos", data);
     return response.data;
   }
 
-  static async update(id: number, data: EletrodomesticoModel): Promise<EletrodomesticoModel> {
+  static async update(id: number, data: UpdateEletrodomesticoModel): Promise<EletrodomesticoModel> {
     const response = await api.put(`/eletrodomesticos/${id}`, data);
     return response.data;
   }

@@ -19,6 +19,8 @@ app.use(cors({
   allowedHeaders: ['Content-Type', 'Authorization'],
 }));
 
+app.use(express.json());
+
 // Registra as rotas
 app.use("/marcas", marcaRoutes);
 app.use("/tiposEletrodomesticos", tipoEletrodomesticoRoutes);
