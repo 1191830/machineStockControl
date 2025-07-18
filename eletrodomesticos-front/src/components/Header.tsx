@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import {
   AppBar,
-  Box,
   Toolbar,
   IconButton,
   Typography,
@@ -20,6 +19,7 @@ import { Link as RouterLink } from 'react-router-dom';
 const pages = [
   { name: 'Home', path: '/home' },
   { name: 'Eletrodomésticos', path: '/eletrodomesticos' },
+  { name: 'Vendas', path: '/vendas' },
 ];
 
 const Header: React.FC = () => {

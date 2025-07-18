@@ -19,6 +19,6 @@ export class Venda {
   @Column({ type: "int" })
   garantia_meses!: number;
 
-  @Column({ type: "varchar", length: 100 })
+  @Column({ type: "varchar", length: 100, nullable: true })
   contacto_comprador!: string;
 }

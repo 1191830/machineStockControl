@@ -20,6 +20,11 @@ import { HistoricoPrecoRepository } from "../modules/historicoPreco/repositories
 import { IHistoricoPrecoRepository } from "../modules/historicoPreco/repositories/IHistoricoPrecoRepository";
 import { HistoricoPrecoService } from "../modules/historicoPreco/services/HistoricoPrecoService";
 import { IHistoricoPrecoService } from "../modules/historicoPreco/services/IHistoricoPrecoService";
+import { IVendaService } from "../modules/vendas/service/IVendaService";
+import { IVendaRepository } from "../modules/vendas/repositories/IVendaRepository";
+import { VendaController } from "../modules/vendas/controller/VendaController";
+import { VendaService } from "../modules/vendas/service/VendaService";
+import { VendaRepository } from "../modules/vendas/repositories/VendaRepository";
 // ELETRODOMESTICOS
 // Registrar o serviço com a interface
 container.registerSingleton<IEletrodomesticoService>(
@@ -88,4 +93,22 @@ container.registerSingleton<IHistoricoPrecoRepository>(
 // Registrar o controller
 container.registerSingleton<HistoricoPrecoController>(
   HistoricoPrecoController
+);
+
+//VENDAS
+// Registrar o serviço com a interface
+container.registerSingleton<IVendaService>(
+  "IVendaService",
+  VendaService
+);
+
+// Registrar o repositório com a interface
+container.registerSingleton<IVendaRepository>(
+  "IVendaRepository",
+  VendaRepository
+);
+
+// Registrar o controller
+container.registerSingleton<VendaController>(
+  VendaController
 );

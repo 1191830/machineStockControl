@@ -15,8 +15,8 @@ import EletrodomesticoDialog from "../components/EletrodomesticoDialog";
 import { useTiposEletrodomestico } from "../hooks/useTiposEletrodomestico";
 import type { EletrodomesticoViewModel } from "../viewModels/EletrodomesticoViewModel";
 import type { EletrodomesticoFormData } from "../models/EletrodomesticoFormModel";
-import ConfirmDeleteDialog from "../components/DeleteEletrodomesticoDialog";
 import EletrodomesticoCard from "../components/EletrodomesticoCard";
+import ConfirmDeleteDialog from "../components/DeleteDialog";
 
 export default function EletrodomesticosPage() {
   const { eletrodomesticos, loading, refetch } = useEletrodomesticos();

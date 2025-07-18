@@ -19,6 +19,7 @@ CREATE TABLE Eletrodomesticos (
     preco_compra DECIMAL(10, 2) NOT NULL,
     preco_anunciado_atual DECIMAL(10, 2),
     tipo VARCHAR(10) NOT NULL CHECK (tipo IN ('VENDA', 'ARRANJO')),
+    finalizado BOOLEAN NOT NULL DEFAULT FALSE,
     marca_id INTEGER REFERENCES Marcas(id),
     tipo_id INTEGER REFERENCES TIPO(id)
 );

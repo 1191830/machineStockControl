@@ -25,6 +25,7 @@ export class CreateTables1739224383596 implements MigrationInterface {
         preco_compra DECIMAL(10,2),
         preco_anunciado_atual DECIMAL(10,2),
         tipo VARCHAR(10) NOT NULL CHECK (tipo IN ('VENDA', 'ARRANJO')),
+        finalizado BOOLEAN NOT NULL DEFAULT FALSE,
         marca_id INTEGER NOT NULL,
         tipo_eletrodomestico_id INTEGER NOT NULL,
         CONSTRAINT fk_marca FOREIGN KEY (marca_id) REFERENCES Marcas(id) ON DELETE CASCADE,

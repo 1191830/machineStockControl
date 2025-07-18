@@ -39,6 +39,7 @@ export class EletrodomesticoRepository implements IEletrodomesticoRepository {
         preco_compra: data.preco_compra,
         preco_anunciado_atual: data.preco_anunciado_atual,
         tipo: data.tipo,
+        finalizado: false,
         marca: marca,
         tipoEletrodomestico: tipoEletrodomestico
       });

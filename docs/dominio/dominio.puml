@@ -19,6 +19,7 @@ entity "Eletrodomesticos" as E {
   +preco_compra: DECIMAL(10, 2)
   +preco_anunciado_atual: DECIMAL(10, 2)
   +tipo_eletrodomestico_id: INTEGER  
+  +finalizado: BOOLEAN DEFAULT FALSE
   +marca_id: INTEGER
 }
 

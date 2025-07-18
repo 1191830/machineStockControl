@@ -32,6 +32,9 @@ import {
   
     @Column({ type: "decimal", precision: 10, scale: 2, nullable: true })
     preco_anunciado_atual?: number;
+
+    @Column({ type: "boolean", default: false })
+    finalizado!: boolean;
   
     @Column({ 
       type: "enum", 
