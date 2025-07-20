@@ -9,6 +9,7 @@ import { tipoEletrodomesticoRoutes } from "./modules/tipoEletrodomestico/routes/
 import { historicoPrecoRoutes } from "./modules/historicoPreco/routes/HistoricoPreco.routes";
 import { vendaRoutes } from './modules/vendas/routes/venda.routes';
 import { eletrodomesticoRoutes } from './modules/eletrodomesticos/routes/eletrodomestico.routes';
+import { arranjoRealizadoRoutes } from './modules/arranjosRealizados/routes/arranjoRealizado.routes';
 
 // Inicializa o Express
 const app = express();
@@ -28,6 +29,7 @@ app.use("/tiposEletrodomesticos", tipoEletrodomesticoRoutes);
 app.use("/eletrodomesticos", eletrodomesticoRoutes);
 app.use("/historico", historicoPrecoRoutes);
 app.use("/vendas", vendaRoutes);
+app.use("/arranjosRealizados", arranjoRealizadoRoutes);
 
 // Rota de teste para verificar se o servidor está ok
 app.get("/", (req: Request, res: Response) => {

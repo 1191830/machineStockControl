@@ -20,6 +20,8 @@ const pages = [
   { name: 'Home', path: '/home' },
   { name: 'Eletrodomésticos', path: '/eletrodomesticos' },
   { name: 'Vendas', path: '/vendas' },
+  { name: 'Arranjos Realizados', path: '/arranjos-realizados' },
+  // Future pages can be added here
 ];
 
 const Header: React.FC = () => {

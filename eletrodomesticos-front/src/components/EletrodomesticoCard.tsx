@@ -1,15 +1,18 @@
 import { Card, CardContent, IconButton } from "@mui/material";
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
+import Build from "@mui/icons-material/Build";
+import PriceCheck from "@mui/icons-material/PriceCheck";
 import type { EletrodomesticoViewModel } from "../viewModels/EletrodomesticoViewModel";
 
 interface Props {
   item: EletrodomesticoViewModel;
   onEdit: (item: EletrodomesticoViewModel) => void;
   onDelete: (item: EletrodomesticoViewModel) => void;
+  onFinalize: (item: EletrodomesticoViewModel) => void;
 }
 
-export default function EletrodomesticoCard({ item, onEdit, onDelete }: Props) {
+export default function EletrodomesticoCard({ item, onEdit, onDelete, onFinalize }: Props) {
 const borderColor = (() => {
     switch (item.tipo.toUpperCase()) {
       case "ARRANJO":
@@ -44,6 +47,9 @@ const borderColor = (() => {
         </p>
 
         <div className="flex justify-end space-x-2 mt-2">
+          <IconButton onClick={() => onFinalize(item)}>       
+            {item.tipo === "ARRANJO" ? <Build /> : <PriceCheck />}
+          </IconButton>
           <IconButton onClick={() => onEdit(item)}>
             <EditIcon />
           </IconButton>

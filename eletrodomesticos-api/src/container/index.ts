@@ -25,6 +25,11 @@ import { IVendaRepository } from "../modules/vendas/repositories/IVendaRepositor
 import { VendaController } from "../modules/vendas/controller/VendaController";
 import { VendaService } from "../modules/vendas/service/VendaService";
 import { VendaRepository } from "../modules/vendas/repositories/VendaRepository";
+import { IArranjoRealizadoService } from "../modules/arranjosRealizados/service/IArranjoRealizadoService";
+import { IArranjoRealizadoRepository } from "../modules/arranjosRealizados/repositories/IArranjoRealizadoRepository";
+import { ArranjoRealizadoController } from "../modules/arranjosRealizados/controller/ArranjoRealizadoController";
+import { ArranjoRealizadoService } from "../modules/arranjosRealizados/service/ArranjoRealizadoService";
+import { ArranjoRealizadoRepository } from "../modules/arranjosRealizados/repositories/ArranjoRealizadoRepository";
 // ELETRODOMESTICOS
 // Registrar o serviço com a interface
 container.registerSingleton<IEletrodomesticoService>(
@@ -111,4 +116,22 @@ container.registerSingleton<IVendaRepository>(
 // Registrar o controller
 container.registerSingleton<VendaController>(
   VendaController
+);
+
+//ARRANJOS REALIZADOS
+// Registrar o serviço com a interface
+container.registerSingleton<IArranjoRealizadoService>(
+  "IArranjoRealizadoService",
+  ArranjoRealizadoService
+);
+
+// Registrar o repositório com a interface
+container.registerSingleton<IArranjoRealizadoRepository>(
+  "IArranjoRealizadoRepository",
+  ArranjoRealizadoRepository
+);
+
+// Registrar o controller
+container.registerSingleton<ArranjoRealizadoController>(
+  ArranjoRealizadoController
 );

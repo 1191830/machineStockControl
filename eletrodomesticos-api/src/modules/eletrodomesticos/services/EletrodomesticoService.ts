@@ -30,4 +30,8 @@ export class EletrodomesticoService implements IEletrodomesticoService {
   async delete(id: number): Promise<boolean> {
     return this.eletrodomesticoRepository.delete(id);
   }
+
+  async findAllNaoFinalizados(): Promise<Eletrodomestico[]> {
+    return this.eletrodomesticoRepository.findAllNaoFinalizados();
+  }
 }

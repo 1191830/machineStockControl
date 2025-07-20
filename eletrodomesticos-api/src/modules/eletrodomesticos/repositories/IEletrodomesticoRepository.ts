@@ -8,4 +8,5 @@ export interface IEletrodomesticoRepository {
   findById(id: number): Promise<Eletrodomestico | null>;
   update(id: number, data: UpdateEletrodomesticoDTO): Promise<Eletrodomestico | null>;
   delete(id: number): Promise<boolean>;
+  findAllNaoFinalizados(): Promise<Eletrodomestico[]>;
 }

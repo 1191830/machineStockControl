@@ -27,4 +27,8 @@ export class EletrodomesticoController {
   async delete(req: Request, res: Response) {
     return await this.eletrodomesticoService.delete(Number(req.params.id));
   }
+
+    async getAllNaoFinalizados(req: Request, res: Response) {
+    return await this.eletrodomesticoService.findAllNaoFinalizados();
+  }
 }

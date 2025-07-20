@@ -21,4 +21,9 @@ export class EletrodomesticoService {
   static async delete(id: number): Promise<void> {
     await api.delete(`/eletrodomesticos/${id}`);
   }
+
+  static async getAllNaoFinalizados(): Promise<EletrodomesticoModel[]> {
+    const response = await api.get<EletrodomesticoModel[]>("/eletrodomesticos/nao-finalizados");
+    return response.data;
+  }
 }

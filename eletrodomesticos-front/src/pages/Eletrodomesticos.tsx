@@ -17,6 +17,12 @@ import type { EletrodomesticoViewModel } from "../viewModels/EletrodomesticoView
 import type { EletrodomesticoFormData } from "../models/EletrodomesticoFormModel";
 import EletrodomesticoCard from "../components/EletrodomesticoCard";
 import ConfirmDeleteDialog from "../components/DeleteDialog";
+import { useVendas } from "../hooks/useVendas";
+import { useArranjosRealizados } from "../hooks/useArranjosrealizados";
+import VendaDialog from "../components/VendaDialog";
+import ArranjoRealizadoDialog from "../components/ArranjoRealizadoDialog";
+import type { VendaFormData } from "../models/VendaFormModel";
+import type { ArranjoRealizadoFormData } from "../models/ArranjoRealizadoFormModel";
 
 export default function EletrodomesticosPage() {
   const { eletrodomesticos, loading, refetch } = useEletrodomesticos();
@@ -36,6 +42,11 @@ export default function EletrodomesticosPage() {
   const [itemToDelete, setItemToDelete] = useState<EletrodomesticoViewModel | null>(
     null
   );
+
+  const { createVenda } = useVendas();
+  const { createArranjo } = useArranjosRealizados();
+
+  const [finalizingItem, setFinalizingItem] = useState<EletrodomesticoViewModel | null>(null);
 
   const tipos = useMemo(() => {
     const uniqueTipos = new Set(
@@ -91,6 +102,10 @@ export default function EletrodomesticosPage() {
   const handleEdit = (eletro: EletrodomesticoViewModel) => {
     setSelectedEletrodomestico(eletro);
     setDialogOpen(true);
+  };
+
+  const handleFinalize = (item: EletrodomesticoViewModel) => {
+    setFinalizingItem(item);
   };
 
   // Abre o popup de confirmação para eliminar
@@ -157,6 +172,38 @@ export default function EletrodomesticosPage() {
     }
   };
 
+  const handleVendaSubmit = async (data: VendaFormData) => {
+    if (!finalizingItem) return;
+
+    const dataToSend = {
+      eletrodomestico: finalizingItem,
+      dataVenda: data.data_venda,
+      precoVenda: data.preco_venda,
+      garantiaMeses: data.garantia_meses,
+      contactoComprador: data.contacto_comprador ?? "",
+    };
+
+    await createVenda(dataToSend);
+    setFinalizingItem(null);
+    await refetch();
+  };
+
+  const handleArranjoSubmit = async (data: ArranjoRealizadoFormData) => {
+    if (!finalizingItem) return;
+
+    const dataToSend = {
+      eletrodomestico: finalizingItem,
+      dataArranjo: data.data_arranjo,
+      descricao: data.descricao,
+      custoMateriais: data.custo_materiais,
+      precoPagoCliente: data.preco_pago_cliente,
+    };
+
+    await createArranjo(dataToSend);
+    setFinalizingItem(null);
+    await refetch();
+  };
+
   if (loading) return <p>A carregar eletrodomésticos...</p>;
 
   return (
@@ -221,6 +268,7 @@ export default function EletrodomesticosPage() {
                       item={item}
                       onEdit={handleEdit}
                       onDelete={() => openDeleteDialog(item)}
+                      onFinalize={handleFinalize}
                     />
             ))}
           </div>
@@ -242,6 +290,24 @@ export default function EletrodomesticosPage() {
         onConfirm={confirmDelete}
         itemName={itemToDelete?.nome}
       />
+
+      {finalizingItem?.tipo === "VENDA" && (
+        <VendaDialog
+          open={!!finalizingItem}
+          onClose={() => setFinalizingItem(null)}
+          onSave={handleVendaSubmit}
+          eletrodomestico={finalizingItem}
+        />
+      )}
+
+      {finalizingItem?.tipo === "ARRANJO" && (
+        <ArranjoRealizadoDialog
+          open={!!finalizingItem}
+          onClose={() => setFinalizingItem(null)}
+          onSave={handleArranjoSubmit}
+          eletrodomestico={finalizingItem}
+        />
+      )}
     </div>
   );
 }

@@ -3,12 +3,17 @@ import { EletrodomesticoService } from "../services/EletrodomesticoService";
 import type { EletrodomesticoViewModel } from "../viewModels/EletrodomesticoViewModel";
 import type { CreateEletrodomesticoModel, EletrodomesticoModel, UpdateEletrodomesticoModel } from "../models/EletrodomesticoModel";
 
+function toInputDateString(dateStr: string): string {
+  const date = new Date(`${dateStr}T00:00:00`);
+  return isNaN(date.getTime()) ? "" : date.toISOString().split("T")[0];
+}
+
 function mapModelToViewModel(item: EletrodomesticoModel): EletrodomesticoViewModel & { id: number } {
   return {
     id: item.id,
     nome: item.nome,
     descricao: item.descricao,
-    dataCompra: new Date(item.data_compra).toLocaleDateString(),
+    dataCompra: toInputDateString(item.data_compra),
     precoCompra: item.preco_compra,
     precoAnunciadoAtual: item.preco_anunciado_atual,
     tipo: item.tipo,
@@ -44,8 +49,8 @@ export function useEletrodomesticos() {
 
   async function fetchData() {
     try {
-      setLoading(true); // Adicionei isto para garantir que volta a mostrar loading se quiseres
-      const data = await EletrodomesticoService.getAll();
+      setLoading(true);
+      const data = await EletrodomesticoService.getAllNaoFinalizados();
       const mapped = data.map(mapModelToViewModel);
       setEletrodomesticos(mapped);
     } catch (error) {

@@ -64,4 +64,11 @@ export class EletrodomesticoRepository implements IEletrodomesticoRepository {
     const result = await this.repository.delete(id);
     return result.affected ? true : false;
   }
+
+  async findAllNaoFinalizados(): Promise<Eletrodomestico[]> {
+  return await this.repository.find({
+    where: { finalizado: false },
+    relations: ["marca", "tipoEletrodomestico"],
+  });
+}
 }

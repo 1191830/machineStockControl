@@ -1,7 +1,7 @@
 import type { EletrodomesticoViewModel } from "./EletrodomesticoViewModel";
 
 export interface VendaViewModel {
-  id: number;
+  id?: number;
   eletrodomestico: EletrodomesticoViewModel;
   dataVenda: string;
   precoVenda: number;

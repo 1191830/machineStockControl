@@ -3,10 +3,15 @@ import { VendaService } from "../services/VendaService";
 import type { VendaModel, CreateVendaModel, UpdateVendaModel } from "../models/VendaModel";
 import type { VendaViewModel } from "../viewModels/VendaViewModel";
 
+function toInputDateString(dateStr: string): string {
+  const d = new Date(`${dateStr}T00:00:00`);
+  return isNaN(d.getTime()) ? "" : d.toISOString().split("T")[0];
+}
+
 function mapModelToViewModel(item: VendaModel): VendaViewModel & { id: number } {
   return {
     id: item.id,
-    dataVenda: new Date(item.data_venda).toLocaleDateString(),
+    dataVenda: toInputDateString(item.data_venda),
     precoVenda: item.preco_venda,
     garantiaMeses: item.garantia_meses,
     contactoComprador: item.contacto_comprador,
@@ -14,7 +19,7 @@ function mapModelToViewModel(item: VendaModel): VendaViewModel & { id: number } 
       id: item.eletrodomestico.id,
       nome: item.eletrodomestico.nome,
       descricao: item.eletrodomestico.descricao,
-      dataCompra: new Date(item.eletrodomestico.data_compra).toLocaleDateString(),
+      dataCompra: toInputDateString(item.eletrodomestico.data_compra),
       precoCompra: item.eletrodomestico.preco_compra,
       precoAnunciadoAtual: item.eletrodomestico.preco_anunciado_atual,
       tipo: item.eletrodomestico.tipo,
@@ -30,6 +35,7 @@ function mapModelToViewModel(item: VendaModel): VendaViewModel & { id: number } 
     }
   };
 }
+
 
 function mapViewModelToCreateModel(item: VendaViewModel): CreateVendaModel {
   return {

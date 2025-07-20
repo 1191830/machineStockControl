@@ -25,6 +25,16 @@ eletrodomesticoRoutes.get("/", async (req, res) => {
   }
 });
 
+// Rota GET - Buscar todos os eletrodomésticos nao finalizados
+eletrodomesticoRoutes.get("/nao-finalizados", async (req, res) => {
+  try {
+    const eletrodomesticos = await eletrodomesticoController.getAllNaoFinalizados(req, res);
+    res.status(200).json(eletrodomesticos);
+  } catch (error:any) {
+    res.status(500).json({ message: "Erro ao buscar eletrodomésticos", error: error.message });
+  }
+});
+
 // Rota GET - Buscar eletrodoméstico pelo ID
 eletrodomesticoRoutes.get("/:id", async (req, res) => {
   try {
