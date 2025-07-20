@@ -5,6 +5,11 @@ CREATE TABLE Marcas (
     categoria VARCHAR(100) NOT NULL
 );
 
+CREATE TABLE TIPO (
+    id SERIAL PRIMARY KEY,
+    nome VARCHAR(100) NOT NULL
+)
+
 -- Tabela Eletrodomesticos
 CREATE TABLE Eletrodomesticos (
     id SERIAL PRIMARY KEY,
@@ -14,7 +19,9 @@ CREATE TABLE Eletrodomesticos (
     preco_compra DECIMAL(10, 2) NOT NULL,
     preco_anunciado_atual DECIMAL(10, 2),
     tipo VARCHAR(10) NOT NULL CHECK (tipo IN ('VENDA', 'ARRANJO')),
-    marca_id INTEGER REFERENCES Marcas(id)
+    finalizado BOOLEAN NOT NULL DEFAULT FALSE,
+    marca_id INTEGER REFERENCES Marcas(id),
+    tipo_id INTEGER REFERENCES TIPO(id)
 );
 
 -- Tabela Historico_Precos_Anunciados

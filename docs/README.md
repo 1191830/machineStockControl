@@ -34,7 +34,7 @@ Este projeto visa o desenvolvimento de um sistema para controlo de stock de elet
 - **Tabela `Eletrodomesticos`**: Contém informações básicas sobre os eletrodomésticos e referencia a tabela de marcas.
 - **Tabela `Historico_Precos_Anunciados`**: Guarda o histórico de alterações no preço anunciado de cada eletrodoméstico.
 - **Tabela `Vendas`**: Registra os dados relacionados à venda dos produtos.
-- **Tabela `Arranjos`**: Registra os arranjos realizados por terceiros em eletrodomésticos.
+- **Tabela `Arranjos`**: Registra os arranjos realizados nos eletrodomesticos comprados.
 - **Tabela `Arranjos_Realizados`**: Contém informações sobre os arranjos realizados pela sua empresa, incluindo custos e preços pagos.
 
 ## Tecnologias Utilizadas
@@ -42,4 +42,8 @@ Este projeto visa o desenvolvimento de um sistema para controlo de stock de elet
 - **Banco de Dados**: PostgreSQL (utilizando SQL para definir as tabelas e relacionamentos)
 - **Linguagem de Programação**: React e Python (app simples para uso interno nao necessitando de grande escalabiliade por isso optou-se por linguagem simples)
 
-## Modelo de Dados (PlantUML)
+## How to
+
+Run docker compose to get the postgres db and pg admin
+Access pgadmin through port 5050 enter username and password to pgadmin and select the bd eletrodomesticos.
+Run node with command npm run dev
