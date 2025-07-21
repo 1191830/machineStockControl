@@ -21,46 +21,41 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.EletrodomesticoService = void 0;
+exports.VendaController = void 0;
 const tsyringe_1 = require("tsyringe");
-let EletrodomesticoService = class EletrodomesticoService {
-    constructor(eletrodomesticoRepository) {
-        this.eletrodomesticoRepository = eletrodomesticoRepository;
+let VendaController = class VendaController {
+    constructor(vendaService) {
+        this.vendaService = vendaService;
     }
-    create(data) {
+    create(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            return this.eletrodomesticoRepository.create(data);
+            return yield this.vendaService.create(req.body);
         });
     }
-    findAll() {
+    getAll(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            return this.eletrodomesticoRepository.findAll();
+            return yield this.vendaService.findAll();
         });
     }
-    findById(id) {
+    getById(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            return this.eletrodomesticoRepository.findById(id);
+            return yield this.vendaService.findById(Number(req.params.id));
         });
     }
-    update(id, data) {
+    update(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            return this.eletrodomesticoRepository.update(id, data);
+            return yield this.vendaService.update(Number(req.params.id), req.body);
         });
     }
-    delete(id) {
+    delete(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            return this.eletrodomesticoRepository.delete(id);
-        });
-    }
-    findAllNaoFinalizados() {
-        return __awaiter(this, void 0, void 0, function* () {
-            return this.eletrodomesticoRepository.findAllNaoFinalizados();
+            return yield this.vendaService.delete(Number(req.params.id));
         });
     }
 };
-exports.EletrodomesticoService = EletrodomesticoService;
-exports.EletrodomesticoService = EletrodomesticoService = __decorate([
+exports.VendaController = VendaController;
+exports.VendaController = VendaController = __decorate([
     (0, tsyringe_1.injectable)(),
-    __param(0, (0, tsyringe_1.inject)("IEletrodomesticoRepository")),
+    __param(0, (0, tsyringe_1.inject)("IVendaService")),
     __metadata("design:paramtypes", [Object])
-], EletrodomesticoService);
+], VendaController);

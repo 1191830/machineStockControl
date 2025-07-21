@@ -21,46 +21,41 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.EletrodomesticoService = void 0;
+exports.TipoEletrodomesticoController = void 0;
 const tsyringe_1 = require("tsyringe");
-let EletrodomesticoService = class EletrodomesticoService {
-    constructor(eletrodomesticoRepository) {
-        this.eletrodomesticoRepository = eletrodomesticoRepository;
+let TipoEletrodomesticoController = class TipoEletrodomesticoController {
+    constructor(tipoEletrodomesticoService) {
+        this.tipoEletrodomesticoService = tipoEletrodomesticoService;
     }
-    create(data) {
+    create(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            return this.eletrodomesticoRepository.create(data);
+            return yield this.tipoEletrodomesticoService.create(req.body);
         });
     }
-    findAll() {
+    getAll(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            return this.eletrodomesticoRepository.findAll();
+            return yield this.tipoEletrodomesticoService.findAll();
         });
     }
-    findById(id) {
+    getById(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            return this.eletrodomesticoRepository.findById(id);
+            return yield this.tipoEletrodomesticoService.findById(Number(req.params.id));
         });
     }
-    update(id, data) {
+    update(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            return this.eletrodomesticoRepository.update(id, data);
+            return yield this.tipoEletrodomesticoService.update(Number(req.params.id), req.body);
         });
     }
-    delete(id) {
+    delete(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            return this.eletrodomesticoRepository.delete(id);
-        });
-    }
-    findAllNaoFinalizados() {
-        return __awaiter(this, void 0, void 0, function* () {
-            return this.eletrodomesticoRepository.findAllNaoFinalizados();
+            return yield this.tipoEletrodomesticoService.delete(Number(req.params.id));
         });
     }
 };
-exports.EletrodomesticoService = EletrodomesticoService;
-exports.EletrodomesticoService = EletrodomesticoService = __decorate([
+exports.TipoEletrodomesticoController = TipoEletrodomesticoController;
+exports.TipoEletrodomesticoController = TipoEletrodomesticoController = __decorate([
     (0, tsyringe_1.injectable)(),
-    __param(0, (0, tsyringe_1.inject)("IEletrodomesticoRepository")),
+    __param(0, (0, tsyringe_1.inject)("ITipoEletrodomesticoService")),
     __metadata("design:paramtypes", [Object])
-], EletrodomesticoService);
+], TipoEletrodomesticoController);

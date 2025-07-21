@@ -118,7 +118,7 @@ src/.vs/config/applicationhost.config
 .idea/
 
 #env
-.env
+.env*
 
 */node_modules
 .qodo

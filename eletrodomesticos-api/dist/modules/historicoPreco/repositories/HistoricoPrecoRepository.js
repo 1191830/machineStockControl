@@ -8,9 +8,6 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-var __param = (this && this.__param) || function (paramIndex, decorator) {
-    return function (target, key) { decorator(target, key, paramIndex); }
-};
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -21,46 +18,49 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.EletrodomesticoService = void 0;
+exports.HistoricoPrecoRepository = void 0;
+const AppDataSource_1 = require("../../../AppDataSource");
+const historicoPrecoAnunciado_entity_1 = require("../../../entities/historicoPrecoAnunciado.entity");
 const tsyringe_1 = require("tsyringe");
-let EletrodomesticoService = class EletrodomesticoService {
-    constructor(eletrodomesticoRepository) {
-        this.eletrodomesticoRepository = eletrodomesticoRepository;
+const eletrodomestico_entity_1 = require("../../../entities/eletrodomestico.entity");
+let HistoricoPrecoRepository = class HistoricoPrecoRepository {
+    constructor() {
+        this.repository = AppDataSource_1.AppDataSource.getRepository(historicoPrecoAnunciado_entity_1.HistoricoPrecoAnunciado);
+        this.eletrodomesticoRepository = AppDataSource_1.AppDataSource.getRepository(eletrodomestico_entity_1.Eletrodomestico);
     }
     create(data) {
         return __awaiter(this, void 0, void 0, function* () {
-            return this.eletrodomesticoRepository.create(data);
+            const eletrodomestico = yield this.eletrodomesticoRepository.findOne({ where: { id: data.eletrodomestico } });
+            if (!eletrodomestico) {
+                throw new Error("Eletrodoméstico não encontrado");
+            }
+            const historicoPreco = this.repository.create({
+                eletrodomestico,
+                preco_anunciado: data.preco_anunciado,
+                data_alteracao: data.data_alteracao,
+            });
+            return yield this.repository.save(historicoPreco);
         });
     }
     findAll() {
         return __awaiter(this, void 0, void 0, function* () {
-            return this.eletrodomesticoRepository.findAll();
+            return yield this.repository.find({ relations: ["eletrodomestico"] });
         });
     }
     findById(id) {
         return __awaiter(this, void 0, void 0, function* () {
-            return this.eletrodomesticoRepository.findById(id);
-        });
-    }
-    update(id, data) {
-        return __awaiter(this, void 0, void 0, function* () {
-            return this.eletrodomesticoRepository.update(id, data);
+            return yield this.repository.findOne({ where: { id }, relations: ["eletrodomestico"] });
         });
     }
     delete(id) {
         return __awaiter(this, void 0, void 0, function* () {
-            return this.eletrodomesticoRepository.delete(id);
-        });
-    }
-    findAllNaoFinalizados() {
-        return __awaiter(this, void 0, void 0, function* () {
-            return this.eletrodomesticoRepository.findAllNaoFinalizados();
+            const result = yield this.repository.delete(id);
+            return result.affected ? true : false;
         });
     }
 };
-exports.EletrodomesticoService = EletrodomesticoService;
-exports.EletrodomesticoService = EletrodomesticoService = __decorate([
+exports.HistoricoPrecoRepository = HistoricoPrecoRepository;
+exports.HistoricoPrecoRepository = HistoricoPrecoRepository = __decorate([
     (0, tsyringe_1.injectable)(),
-    __param(0, (0, tsyringe_1.inject)("IEletrodomesticoRepository")),
-    __metadata("design:paramtypes", [Object])
-], EletrodomesticoService);
+    __metadata("design:paramtypes", [])
+], HistoricoPrecoRepository);

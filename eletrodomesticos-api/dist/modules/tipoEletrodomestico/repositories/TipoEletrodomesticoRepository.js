@@ -18,50 +18,28 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.EletrodomesticoRepository = void 0;
+exports.TipoEletrodomesticoRepository = void 0;
 const AppDataSource_1 = require("../../../AppDataSource");
-const eletrodomestico_entity_1 = require("../../../entities/eletrodomestico.entity");
-const tsyringe_1 = require("tsyringe");
 const tipoEletrodomestico_entity_1 = require("../../../entities/tipoEletrodomestico.entity");
-const marca_entity_1 = require("../../../entities/marca.entity");
-let EletrodomesticoRepository = class EletrodomesticoRepository {
+const tsyringe_1 = require("tsyringe");
+let TipoEletrodomesticoRepository = class TipoEletrodomesticoRepository {
     constructor() {
-        this.repository = AppDataSource_1.AppDataSource.getRepository(eletrodomestico_entity_1.Eletrodomestico);
-        this.marcaRepository = AppDataSource_1.AppDataSource.getRepository(marca_entity_1.Marca);
-        this.tipoEletrodomesticoRepository = AppDataSource_1.AppDataSource.getRepository(tipoEletrodomestico_entity_1.TipoEletrodomestico);
+        this.repository = AppDataSource_1.AppDataSource.getRepository(tipoEletrodomestico_entity_1.TipoEletrodomestico);
     }
     create(data) {
         return __awaiter(this, void 0, void 0, function* () {
-            const marca = yield this.marcaRepository.findOne({ where: { id: data.marca_id } });
-            const tipoEletrodomestico = yield this.tipoEletrodomesticoRepository.findOne({ where: { id: data.tipo_id } });
-            if (!marca) {
-                throw new Error("Marca não encontrada");
-            }
-            if (!tipoEletrodomestico) {
-                throw new Error("Tipo de eletrodomestico não encontrado");
-            }
-            const eletrodomestico = this.repository.create({
-                nome: data.nome,
-                descricao: data.descricao,
-                data_compra: data.data_compra,
-                preco_compra: data.preco_compra,
-                preco_anunciado_atual: data.preco_anunciado_atual,
-                tipo: data.tipo,
-                finalizado: false,
-                marca: marca,
-                tipoEletrodomestico: tipoEletrodomestico
-            });
-            return yield this.repository.save(eletrodomestico);
+            const tipoEletrodomestico = this.repository.create(data);
+            return yield this.repository.save(tipoEletrodomestico);
         });
     }
     findAll() {
         return __awaiter(this, void 0, void 0, function* () {
-            return yield this.repository.find({ relations: ["marca", "tipoEletrodomestico"] });
+            return yield this.repository.find();
         });
     }
     findById(id) {
         return __awaiter(this, void 0, void 0, function* () {
-            return yield this.repository.findOne({ where: { id }, relations: ["marca", "tipoEletrodomestico"] });
+            return yield this.repository.findOne({ where: { id } });
         });
     }
     update(id, data) {
@@ -76,17 +54,9 @@ let EletrodomesticoRepository = class EletrodomesticoRepository {
             return result.affected ? true : false;
         });
     }
-    findAllNaoFinalizados() {
-        return __awaiter(this, void 0, void 0, function* () {
-            return yield this.repository.find({
-                where: { finalizado: false },
-                relations: ["marca", "tipoEletrodomestico"],
-            });
-        });
-    }
 };
-exports.EletrodomesticoRepository = EletrodomesticoRepository;
-exports.EletrodomesticoRepository = EletrodomesticoRepository = __decorate([
+exports.TipoEletrodomesticoRepository = TipoEletrodomesticoRepository;
+exports.TipoEletrodomesticoRepository = TipoEletrodomesticoRepository = __decorate([
     (0, tsyringe_1.injectable)(),
     __metadata("design:paramtypes", [])
-], EletrodomesticoRepository);
+], TipoEletrodomesticoRepository);

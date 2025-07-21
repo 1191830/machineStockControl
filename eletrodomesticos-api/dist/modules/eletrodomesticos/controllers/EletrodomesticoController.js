@@ -23,50 +23,44 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.EletrodomesticoController = void 0;
 const tsyringe_1 = require("tsyringe");
-const EletrodomesticoService_1 = require("../services/EletrodomesticoService");
 let EletrodomesticoController = class EletrodomesticoController {
     constructor(eletrodomesticoService) {
         this.eletrodomesticoService = eletrodomesticoService;
     }
     create(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            const eletrodomestico = yield this.eletrodomesticoService.create(req.body);
-            return res.status(201).json(eletrodomestico);
+            return yield this.eletrodomesticoService.create(req.body);
         });
     }
     getAll(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            const eletrodomesticos = yield this.eletrodomesticoService.findAll();
-            return res.json(eletrodomesticos);
+            return yield this.eletrodomesticoService.findAll();
         });
     }
     getById(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            const eletrodomestico = yield this.eletrodomesticoService.findById(Number(req.params.id));
-            if (!eletrodomestico)
-                return res.status(404).json({ message: "Eletrodoméstico não encontrado" });
-            return res.json(eletrodomestico);
+            return yield this.eletrodomesticoService.findById(Number(req.params.id));
         });
     }
     update(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            const eletrodomestico = yield this.eletrodomesticoService.update(Number(req.params.id), req.body);
-            if (!eletrodomestico)
-                return res.status(404).json({ message: "Eletrodoméstico não encontrado" });
-            return res.json(eletrodomestico);
+            return yield this.eletrodomesticoService.update(Number(req.params.id), req.body);
         });
     }
     delete(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            const deleted = yield this.eletrodomesticoService.delete(Number(req.params.id));
-            if (!deleted)
-                return res.status(404).json({ message: "Eletrodoméstico não encontrado" });
-            return res.status(204).send();
+            return yield this.eletrodomesticoService.delete(Number(req.params.id));
+        });
+    }
+    getAllNaoFinalizados(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            return yield this.eletrodomesticoService.findAllNaoFinalizados();
         });
     }
 };
 exports.EletrodomesticoController = EletrodomesticoController;
 exports.EletrodomesticoController = EletrodomesticoController = __decorate([
-    __param(0, (0, tsyringe_1.inject)('EletrodomesticoService')),
-    __metadata("design:paramtypes", [EletrodomesticoService_1.EletrodomesticoService])
+    (0, tsyringe_1.injectable)(),
+    __param(0, (0, tsyringe_1.inject)("IEletrodomesticoService")),
+    __metadata("design:paramtypes", [Object])
 ], EletrodomesticoController);

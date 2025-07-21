@@ -46,6 +46,10 @@ __decorate([
     __metadata("design:type", Number)
 ], Eletrodomestico.prototype, "preco_anunciado_atual", void 0);
 __decorate([
+    (0, typeorm_1.Column)({ type: "boolean", default: false }),
+    __metadata("design:type", Boolean)
+], Eletrodomestico.prototype, "finalizado", void 0);
+__decorate([
     (0, typeorm_1.Column)({
         type: "enum",
         enum: TipoEletrodomesticoEnum

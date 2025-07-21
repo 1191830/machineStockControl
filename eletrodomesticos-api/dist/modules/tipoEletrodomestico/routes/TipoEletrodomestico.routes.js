@@ -9,52 +9,42 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.eletrodomesticoRoutes = void 0;
+exports.tipoEletrodomesticoRoutes = void 0;
 const express_1 = require("express");
 const tsyringe_1 = require("tsyringe");
-const EletrodomesticoController_1 = require("../controllers/EletrodomesticoController");
-const eletrodomesticoRoutes = (0, express_1.Router)();
-exports.eletrodomesticoRoutes = eletrodomesticoRoutes;
-const eletrodomesticoController = tsyringe_1.container.resolve(EletrodomesticoController_1.EletrodomesticoController);
+const TipoEletrodomesticoController_1 = require("../controllers/TipoEletrodomesticoController");
+const tipoEletrodomesticoRoutes = (0, express_1.Router)();
+exports.tipoEletrodomesticoRoutes = tipoEletrodomesticoRoutes;
+const tipoEletrodomesticoController = tsyringe_1.container.resolve(TipoEletrodomesticoController_1.TipoEletrodomesticoController);
 // Rota POST - Criar um novo eletrodoméstico
-eletrodomesticoRoutes.post("/", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+tipoEletrodomesticoRoutes.post("/", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        const eletrodomestico = yield eletrodomesticoController.create(req, res);
-        res.status(201).json(eletrodomestico);
+        const TipoEletrodomestico = yield tipoEletrodomesticoController.create(req, res);
+        res.status(201).json(TipoEletrodomestico);
     }
     catch (error) {
         res.status(500).json({ message: "Erro ao criar eletrodoméstico", error: error.message });
     }
 }));
 // Rota GET - Buscar todos os eletrodomésticos
-eletrodomesticoRoutes.get("/", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+tipoEletrodomesticoRoutes.get("/", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        const eletrodomesticos = yield eletrodomesticoController.getAll(req, res);
-        res.status(200).json(eletrodomesticos);
-    }
-    catch (error) {
-        res.status(500).json({ message: "Erro ao buscar eletrodomésticos", error: error.message });
-    }
-}));
-// Rota GET - Buscar todos os eletrodomésticos nao finalizados
-eletrodomesticoRoutes.get("/nao-finalizados", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    try {
-        const eletrodomesticos = yield eletrodomesticoController.getAllNaoFinalizados(req, res);
-        res.status(200).json(eletrodomesticos);
+        const TipoEletrodomesticos = yield tipoEletrodomesticoController.getAll(req, res);
+        res.status(200).json(TipoEletrodomesticos);
     }
     catch (error) {
         res.status(500).json({ message: "Erro ao buscar eletrodomésticos", error: error.message });
     }
 }));
 // Rota GET - Buscar eletrodoméstico pelo ID
-eletrodomesticoRoutes.get("/:id", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+tipoEletrodomesticoRoutes.get("/:id", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        const eletrodomestico = yield eletrodomesticoController.getById(req, res);
-        if (!eletrodomestico) {
+        const TipoEletrodomestico = yield tipoEletrodomesticoController.getById(req, res);
+        if (!TipoEletrodomestico) {
             res.status(404).json({ message: "Eletrodoméstico não encontrado" });
         }
         else {
-            res.status(200).json(eletrodomestico);
+            res.status(200).json(TipoEletrodomestico);
         }
     }
     catch (error) {
@@ -62,14 +52,14 @@ eletrodomesticoRoutes.get("/:id", (req, res) => __awaiter(void 0, void 0, void 0
     }
 }));
 // Rota PUT - Atualizar um eletrodoméstico pelo ID
-eletrodomesticoRoutes.put("/:id", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+tipoEletrodomesticoRoutes.put("/:id", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        const eletrodomestico = yield eletrodomesticoController.update(req, res);
-        if (!eletrodomestico) {
+        const TipoEletrodomestico = yield tipoEletrodomesticoController.update(req, res);
+        if (!TipoEletrodomestico) {
             res.status(404).json({ message: "Eletrodoméstico não encontrado" });
         }
         else {
-            res.status(200).json(eletrodomestico);
+            res.status(200).json(TipoEletrodomestico);
         }
     }
     catch (error) {
@@ -77,9 +67,9 @@ eletrodomesticoRoutes.put("/:id", (req, res) => __awaiter(void 0, void 0, void 0
     }
 }));
 // Rota DELETE - Remover um eletrodoméstico pelo ID
-eletrodomesticoRoutes.delete("/:id", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+tipoEletrodomesticoRoutes.delete("/:id", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        const deleted = yield eletrodomesticoController.delete(req, res);
+        const deleted = yield tipoEletrodomesticoController.delete(req, res);
         if (deleted) {
             res.status(204).send();
         }

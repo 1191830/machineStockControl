@@ -37,7 +37,7 @@ __decorate([
     __metadata("design:type", Number)
 ], Venda.prototype, "garantia_meses", void 0);
 __decorate([
-    (0, typeorm_1.Column)({ type: "varchar", length: 100 }),
+    (0, typeorm_1.Column)({ type: "varchar", length: 100, nullable: true }),
     __metadata("design:type", String)
 ], Venda.prototype, "contacto_comprador", void 0);
 exports.Venda = Venda = __decorate([

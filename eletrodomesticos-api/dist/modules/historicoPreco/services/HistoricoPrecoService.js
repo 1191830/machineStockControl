@@ -21,46 +21,36 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.EletrodomesticoService = void 0;
+exports.HistoricoPrecoService = void 0;
 const tsyringe_1 = require("tsyringe");
-let EletrodomesticoService = class EletrodomesticoService {
-    constructor(eletrodomesticoRepository) {
-        this.eletrodomesticoRepository = eletrodomesticoRepository;
+let HistoricoPrecoService = class HistoricoPrecoService {
+    constructor(HistoricoPrecoRepository) {
+        this.HistoricoPrecoRepository = HistoricoPrecoRepository;
     }
     create(data) {
         return __awaiter(this, void 0, void 0, function* () {
-            return this.eletrodomesticoRepository.create(data);
+            return this.HistoricoPrecoRepository.create(data);
         });
     }
     findAll() {
         return __awaiter(this, void 0, void 0, function* () {
-            return this.eletrodomesticoRepository.findAll();
+            return this.HistoricoPrecoRepository.findAll();
         });
     }
     findById(id) {
         return __awaiter(this, void 0, void 0, function* () {
-            return this.eletrodomesticoRepository.findById(id);
-        });
-    }
-    update(id, data) {
-        return __awaiter(this, void 0, void 0, function* () {
-            return this.eletrodomesticoRepository.update(id, data);
+            return this.HistoricoPrecoRepository.findById(id);
         });
     }
     delete(id) {
         return __awaiter(this, void 0, void 0, function* () {
-            return this.eletrodomesticoRepository.delete(id);
-        });
-    }
-    findAllNaoFinalizados() {
-        return __awaiter(this, void 0, void 0, function* () {
-            return this.eletrodomesticoRepository.findAllNaoFinalizados();
+            return this.HistoricoPrecoRepository.delete(id);
         });
     }
 };
-exports.EletrodomesticoService = EletrodomesticoService;
-exports.EletrodomesticoService = EletrodomesticoService = __decorate([
+exports.HistoricoPrecoService = HistoricoPrecoService;
+exports.HistoricoPrecoService = HistoricoPrecoService = __decorate([
     (0, tsyringe_1.injectable)(),
-    __param(0, (0, tsyringe_1.inject)("IEletrodomesticoRepository")),
+    __param(0, (0, tsyringe_1.inject)("IHistoricoPrecoRepository")),
     __metadata("design:paramtypes", [Object])
-], EletrodomesticoService);
+], HistoricoPrecoService);
