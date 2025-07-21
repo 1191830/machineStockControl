@@ -20,9 +20,9 @@ COPY package*.json ./
 COPY wait-for-it.sh .
 COPY docker-entrypoint.sh ./
 RUN apk add --no-cache bash
-RUN chmod +x wait-for-it.sh
+RUN chmod +x wait-for-it.sh docker-entrypoint.sh
 RUN npm install --omit=dev
 
 EXPOSE 3000
 
-ENTRYPOINT ["./docker-entrypoint.sh"]
+ENTRYPOINT ["sh", "./docker-entrypoint.sh"]
