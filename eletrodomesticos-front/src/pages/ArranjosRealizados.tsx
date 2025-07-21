@@ -98,7 +98,7 @@ export default function ArranjosRealizadosPage() {
   const confirmDelete = async () => {
     if (!itemToDelete) return;
     try {
-      await ArranjoRealizadoService.delete(itemToDelete.id);
+      await ArranjoRealizadoService.delete(itemToDelete.id!);
       await refetch();
     } catch (error) {
       console.error("Erro ao eliminar arranjo:", error);

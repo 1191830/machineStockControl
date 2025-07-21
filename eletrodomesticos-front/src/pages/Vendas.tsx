@@ -112,7 +112,7 @@ export default function VendasPage() {
     if (!itemToDelete) return;
 
     try {
-      await VendaService.delete(itemToDelete.id);
+      await VendaService.delete(itemToDelete.id!);
       await refetch();
     } catch (error) {
       console.error("Erro ao eliminar venda:", error);
