@@ -15,8 +15,22 @@ import { arranjoRealizadoRoutes } from './modules/arranjosRealizados/routes/arra
 const app = express();
 
 // Middleware para parsear JSON
+const allowedOrigins = [
+  'http://localhost:5173',
+  'https://machinestockcontrol.pages.dev',
+];
+
 app.use(cors({
-  origin: 'http://localhost:5173', // Apenas permitir frontend
+  origin: function(origin, callback) {
+    // Allow requests with no origin like curl or Postman
+    if (!origin) return callback(null, true);
+
+    if (allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error(`Origin ${origin} not allowed by CORS`));
+    }
+  },
   methods: ['GET', 'POST', 'PUT', 'DELETE'],
   allowedHeaders: ['Content-Type', 'Authorization'],
 }));
