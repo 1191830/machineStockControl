@@ -10,8 +10,8 @@ import { ArranjoRealizado } from "./entities/arranjoRealizado.entity";
 
 export const AppDataSource = new DataSource({
   type: "postgres",
-  host: "127.0.0.1",
-  port: 5432,
+  host: process.env.DB_HOST,
+  port: Number(process.env.DB_PORT) || 5432,
   username: process.env.POSTGRES_USER,
   password: process.env.POSTGRES_PASSWORD,
   database: process.env.POSTGRES_DB,

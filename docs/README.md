@@ -47,3 +47,8 @@ Este projeto visa o desenvolvimento de um sistema para controlo de stock de elet
 Run docker compose to get the postgres db and pg admin
 Access pgadmin through port 5050 enter username and password to pgadmin and select the bd eletrodomesticos.
 Run node with command npm run dev
+
+# BE + DB containeraised
+
+Inside eletrodomesticos-api we got a docker-compose that containerises both our API and database including seeds.
+We can run docker compose with command docker-compose up --build inside the api folder to initiate API
