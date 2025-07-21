@@ -122,3 +122,5 @@ src/.vs/config/applicationhost.config
 
 */node_modules
 .qodo
+
+*/dist
