@@ -25,7 +25,7 @@ jobs:
           --health-retries 5
 
     env:
-      DB_HOST: localhost
+      DB_HOST: 127.0.0.1
       DB_PORT: 5432
       POSTGRES_USER: admin
       POSTGRES_PASSWORD: admin
@@ -41,7 +41,7 @@ jobs:
       - name: Build Docker image
         run: docker build -t eletrodomesticos-api-test ./eletrodomesticos-api
 
-      - name: Run container
+      - name: Run container and test
         run: |
           docker run --rm \
             -e DB_HOST=$DB_HOST \
@@ -49,4 +49,5 @@ jobs:
             -e POSTGRES_USER=$POSTGRES_USER \
             -e POSTGRES_PASSWORD=$POSTGRES_PASSWORD \
             -e POSTGRES_DB=$POSTGRES_DB \
+            --network host \
             eletrodomesticos-api-test
