@@ -16,9 +16,9 @@ import {
 
 import type { SelectChangeEvent } from "@mui/material/Select";
 import type { EletrodomesticoFormData } from "../models/EletrodomesticoFormModel";
-import type { TipoEletrodomesticoModel } from "../models/EletrodomesticoModel";
 import type { EletrodomesticoViewModel } from "../viewModels/EletrodomesticoViewModel";
 import type { MarcaModel } from "../models/MarcaModel";
+import type { TipoEletrodomesticoModel } from "../models/TipoEletrodomesticoModel";
 
 interface Props {
   open: boolean;
