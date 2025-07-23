@@ -3,7 +3,6 @@
 entity "Marcas" as M {
   +id: SERIAL
   +nome: VARCHAR(100)
-  +categoria: VARCHAR(100)
 }
 
 entity "Tipo_Eletrodomestico" as T {

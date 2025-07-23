@@ -1,15 +1,7 @@
+import type { MarcaModel } from "./MarcaModel";
+import type { TipoEletrodomesticoModel } from "./TipoEletrodomesticoModel";
+
 export type TipoEletrodomesticoEnum = "VENDA" | "ARRANJO";
-
-export interface MarcaModel {
-  id: number;
-  nome: string;
-  categoria: string;
-}
-
-export interface TipoEletrodomesticoModel {
-  id: number;
-  nome: string;
-}
 
 export interface EletrodomesticoModel {
   id: number;

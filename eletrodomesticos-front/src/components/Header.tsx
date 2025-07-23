@@ -21,6 +21,7 @@ const pages = [
   { name: 'Eletrodomésticos', path: '/eletrodomesticos' },
   { name: 'Vendas', path: '/vendas' },
   { name: 'Arranjos Realizados', path: '/arranjos-realizados' },
+  { name: 'Entidades', path: '/entidades' },
   // Future pages can be added here
 ];
 

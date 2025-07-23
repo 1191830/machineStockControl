@@ -18,7 +18,7 @@ function mapModelToViewModel(item: EletrodomesticoModel): EletrodomesticoViewMod
     precoAnunciadoAtual: item.preco_anunciado_atual,
     tipo: item.tipo,
     tipoEletrodomestico: { id: item.tipoEletrodomestico?.id ?? 0, nome: item.tipoEletrodomestico?.nome },
-    marca: { id: item.marca?.id ?? 0, nome: item.marca?.nome, categoria: item.marca?.categoria }
+    marca: { id: item.marca?.id ?? 0, nome: item.marca?.nome }
   };
 }
 

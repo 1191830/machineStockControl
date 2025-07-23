@@ -33,8 +33,7 @@ function mapModelToViewModel(item: ArranjoRealizadoModel): ArranjoRealizadoViewM
       },
       marca: {
         id: item.eletrodomestico.marca?.id ?? 0,
-        nome: item.eletrodomestico.marca?.nome ?? "",
-        categoria: item.eletrodomestico.marca?.categoria
+        nome: item.eletrodomestico.marca?.nome ?? ""
       }
     }
   };

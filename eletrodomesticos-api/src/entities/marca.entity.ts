@@ -5,9 +5,6 @@ export class Marca {
   @PrimaryGeneratedColumn()
   id!: number; // O "!" indica que o TypeORM irá definir esse valor
 
-  @Column({ type: "varchar", length: 100 })
+  @Column({ type: "varchar", length: 100, nullable: false })
   nome!: string;
-
-  @Column({ type: "varchar", length: 100 })
-  categoria!: string;
 }

@@ -8,10 +8,8 @@ import { Arranjo } from "../entities/arranjo.entity";
 import { ArranjoRealizado } from "../entities/arranjoRealizado.entity";
 import { Venda } from "../entities/venda.entity";
 
-const seedDatabase = async () => {
+export const seedDatabase = async () => {
   try {
-    console.log("🚀 Conectando ao banco de dados...");
-    await AppDataSource.initialize();
 
     const marcaRepo = AppDataSource.getRepository(Marca);
     const tipoRepo = AppDataSource.getRepository(TipoEletrodomestico);
@@ -21,11 +19,18 @@ const seedDatabase = async () => {
     const arranjosRepo = AppDataSource.getRepository(Arranjo);
     const arranjosRealizadosRepo = AppDataSource.getRepository(ArranjoRealizado);
 
+    const marcaCount = await marcaRepo.count();
+    
+    if (marcaCount > 0) {
+      console.log("⚠️ Dados já existem no banco. Seed ignorado.");
+      return;
+    }
+
     // Inserir marcas
     const marcas = await marcaRepo.save([
-      { nome: "Samsung", categoria: "WW90T554DAN " },
-      { nome: "LG", categoria: "GBF61PZJZN " },
-      { nome: "Whirpool", categoria: "WFC 3C26" },
+      { nome: "Samsung" },
+      { nome: "LG" },
+      { nome: "Whirpool" },
     ]);
 
     // Inserir tipos
@@ -114,11 +119,7 @@ const seedDatabase = async () => {
     ]);
 
     console.log("✅ Seeds inseridos com sucesso!");
-    await AppDataSource.destroy();
   } catch (error) {
     console.error("❌ Erro ao rodar os seeds:", error);
   }
 };
-
-// Executar a função de seed
-seedDatabase();
