@@ -10,6 +10,7 @@ import { historicoPrecoRoutes } from "./modules/historicoPreco/routes/HistoricoP
 import { vendaRoutes } from './modules/vendas/routes/venda.routes';
 import { eletrodomesticoRoutes } from './modules/eletrodomesticos/routes/eletrodomestico.routes';
 import { arranjoRealizadoRoutes } from './modules/arranjosRealizados/routes/arranjoRealizado.routes';
+import { seedDatabase } from './database/seeds';
 
 // Inicializa o Express
 const app = express();
@@ -52,9 +53,10 @@ app.get("/", (req: Request, res: Response) => {
 
 // Inicializa o TypeORM e inicia o servidor
 AppDataSource.initialize()
-  .then(() => {
+  .then(async () => {
     console.log("Conexão com o banco de dados estabelecida com sucesso!");
 
+    await seedDatabase(); 
     // Inicia o servidor
     const PORT = process.env.PORT || 3000;
     app.listen(PORT, () => {

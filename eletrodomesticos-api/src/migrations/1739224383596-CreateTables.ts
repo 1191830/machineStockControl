@@ -6,8 +6,7 @@ export class CreateTables1739224383596 implements MigrationInterface {
       -- Criando a tabela Marcas
       CREATE TABLE Marcas (
         id SERIAL PRIMARY KEY,
-        nome VARCHAR(100) NOT NULL,
-        categoria VARCHAR(100) NOT NULL
+        nome VARCHAR(100) NOT NULL
       );
 
       -- Criando a tabela Tipo_Eletrodomestico

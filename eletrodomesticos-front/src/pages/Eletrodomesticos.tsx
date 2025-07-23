@@ -12,7 +12,7 @@ import { useEletrodomesticos } from "../hooks/useEletrodomesticos";
 import { useMarcas } from "../hooks/useMarcas";
 import { EletrodomesticoService } from "../services/EletrodomesticoService";
 import EletrodomesticoDialog from "../components/EletrodomesticoDialog";
-import { useTiposEletrodomestico } from "../hooks/useTiposEletrodomestico";
+import { useTipoEletrodomesticos } from "../hooks/useTipoEletrodomestico";
 import type { EletrodomesticoViewModel } from "../viewModels/EletrodomesticoViewModel";
 import type { EletrodomesticoFormData } from "../models/EletrodomesticoFormModel";
 import EletrodomesticoCard from "../components/EletrodomesticoCard";
@@ -27,7 +27,7 @@ import type { ArranjoRealizadoFormData } from "../models/ArranjoRealizadoFormMod
 export default function EletrodomesticosPage() {
   const { eletrodomesticos, loading, refetch } = useEletrodomesticos();
   const { marcas } = useMarcas();
-  const { tiposEletrodomestico } = useTiposEletrodomestico();
+  const { tipoEletrodomesticos } = useTipoEletrodomesticos();
 
   const [selectedTipo, setSelectedTipo] = useState<string>("");
   const [selectedMarca, setSelectedMarca] = useState<string>("");
@@ -280,7 +280,7 @@ export default function EletrodomesticosPage() {
         onClose={() => setDialogOpen(false)}
         onSave={handleSave}
         marcas={marcas}
-        tiposEletrodomesticos={tiposEletrodomestico}
+        tiposEletrodomesticos={tipoEletrodomesticos}
         initialData={selectedEletrodomestico}
       />
 

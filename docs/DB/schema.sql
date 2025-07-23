@@ -1,8 +1,7 @@
 -- Tabela Marcas
 CREATE TABLE Marcas (
     id SERIAL PRIMARY KEY,
-    nome VARCHAR(100) NOT NULL,
-    categoria VARCHAR(100) NOT NULL
+    nome VARCHAR(100) NOT NULL UNIQUE,
 );
 
 CREATE TABLE TIPO (

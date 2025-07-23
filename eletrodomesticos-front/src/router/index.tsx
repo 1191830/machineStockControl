@@ -4,6 +4,7 @@ import Home from '../pages/Home';
 import Eletrodomesticos from '../pages/Eletrodomesticos';
 import Vendas from '../pages/Vendas';
 import ArranjosRealizadosPage from '../pages/ArranjosRealizados';
+import EntityPage from '../pages/EntityPage';
 
 const AppRoutes: React.FC = () => {
   return (
@@ -13,6 +14,7 @@ const AppRoutes: React.FC = () => {
       <Route path="/eletrodomesticos" element={<Eletrodomesticos />} />
       <Route path="/vendas" element={<Vendas />} />
       <Route path="/arranjos-realizados" element={<ArranjosRealizadosPage />} />
+      <Route path="/entidades" element={<EntityPage />} />
       {/* Future routes go here */}
     </Routes>
   );
