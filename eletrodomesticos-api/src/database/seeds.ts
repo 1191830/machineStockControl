@@ -92,6 +92,7 @@ export const seedDatabase = async () => {
         eletrodomestico: eletrodomesticos[0],
         data_venda: new Date("2023-07-10"),
         preco_venda: 750.0,
+        gastos: 50.0,
         garantia_meses: 12,
         contacto_comprador: "Cliente A",
       },

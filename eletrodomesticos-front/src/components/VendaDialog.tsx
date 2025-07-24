@@ -35,6 +35,7 @@ export default function VendaDialog({
     eletrodomestico_id: 0,
     data_venda: new Date().toISOString().split("T")[0],
     preco_venda: 0,
+    gastos: 0,
     garantia_meses: 0,
     contacto_comprador: "",
   });
@@ -47,6 +48,7 @@ export default function VendaDialog({
         eletrodomestico_id: initialData.eletrodomestico.id,
         data_venda: new Date(initialData.dataVenda).toISOString().split("T")[0],
         preco_venda: initialData.precoVenda,
+        gastos: initialData.gastos,
         garantia_meses: initialData.garantiaMeses,
         contacto_comprador: initialData.contactoComprador,
       });
@@ -55,6 +57,7 @@ export default function VendaDialog({
         eletrodomestico_id: eletrodomestico.id,
         data_venda: new Date().toISOString().split("T")[0],
         preco_venda: eletrodomestico.precoAnunciadoAtual || 0,
+        gastos: 0,
         garantia_meses: 0,
         contacto_comprador: "",
       });
@@ -86,6 +89,7 @@ export default function VendaDialog({
 
     if (!form.data_venda) newErrors.data_venda = "Data é obrigatória";
     if (form.preco_venda <= 0) newErrors.preco_venda = "Preço deve ser maior que 0";
+    if (form.gastos < 0) newErrors.gastos = "Gastos não podem ser negativos";
     if (form.garantia_meses < 0) newErrors.garantia_meses = "Garantia não pode ser negativa";
 
     setErrors(newErrors);
@@ -154,6 +158,17 @@ export default function VendaDialog({
             fullWidth
             error={!!errors.preco_venda}
             helperText={errors.preco_venda}
+          />
+
+          <TextField
+            label="Gastos"
+            name="gastos"
+            type="number"
+            value={form.gastos}
+            onChange={handleChange}
+            fullWidth
+            error={!!errors.gastos}
+            helperText={errors.gastos}
           />
 
           <TextField

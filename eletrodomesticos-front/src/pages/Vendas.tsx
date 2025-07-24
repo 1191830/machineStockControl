@@ -129,6 +129,7 @@ export default function VendasPage() {
         eletrodomestico_id: formData.eletrodomestico_id,
         data_venda: new Date(formData.data_venda),
         preco_venda: formData.preco_venda,
+        gastos: formData.gastos,
         garantia_meses: formData.garantia_meses,
         contacto_comprador: formData.contacto_comprador?.trim() || "",
       });
@@ -137,6 +138,7 @@ export default function VendasPage() {
       await VendaService.update(id, {
         data_venda: new Date(formData.data_venda),
         preco_venda: formData.preco_venda,
+        gastos: formData.gastos,
         garantia_meses: formData.garantia_meses,
         contacto_comprador: formData.contacto_comprador?.trim() || undefined,
       });

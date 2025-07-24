@@ -13,6 +13,7 @@ function mapModelToViewModel(item: VendaModel): VendaViewModel & { id: number } 
     id: item.id,
     dataVenda: toInputDateString(item.data_venda),
     precoVenda: item.preco_venda,
+    gastos: item.gastos,
     garantiaMeses: item.garantia_meses,
     contactoComprador: item.contacto_comprador,
     eletrodomestico: {
@@ -41,6 +42,7 @@ function mapViewModelToCreateModel(item: VendaViewModel): CreateVendaModel {
     eletrodomestico_id: item.eletrodomestico.id,
     data_venda: new Date(item.dataVenda),
     preco_venda: item.precoVenda,
+    gastos: item.gastos,
     garantia_meses: item.garantiaMeses,
     contacto_comprador: item.contactoComprador,
   };
@@ -50,6 +52,7 @@ function mapViewModelToUpdateModel(item: VendaViewModel): UpdateVendaModel {
   return {
     data_venda: new Date(item.dataVenda),
     preco_venda: item.precoVenda,
+    gastos: item.gastos,
     garantia_meses: item.garantiaMeses,
     contacto_comprador: item.contactoComprador,
   };
