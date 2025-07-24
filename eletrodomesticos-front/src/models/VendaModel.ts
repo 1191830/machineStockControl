@@ -5,6 +5,7 @@ export interface VendaModel {
   eletrodomestico: EletrodomesticoModel;
   data_venda: string; // ISO Date
   preco_venda: number;
+  gastos: number;
   garantia_meses: number;
   contacto_comprador: string;
 }
@@ -13,6 +14,7 @@ export interface CreateVendaModel {
   eletrodomestico_id: number;
   data_venda: Date;
   preco_venda: number;
+  gastos: number;
   garantia_meses: number;
   contacto_comprador: string;
 }
@@ -20,6 +22,7 @@ export interface CreateVendaModel {
 export interface UpdateVendaModel {
   data_venda?: Date;
   preco_venda?: number;
+  gastos?: number;
   garantia_meses?: number;
   contacto_comprador?: string;
 }

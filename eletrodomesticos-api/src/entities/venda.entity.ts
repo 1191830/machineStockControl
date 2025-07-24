@@ -16,6 +16,9 @@ export class Venda {
   @Column({ type: "decimal", precision: 10, scale: 2 })
   preco_venda!: number;
 
+  @Column({ type: "decimal", precision: 10, scale: 2, default: 0.00 })
+  gastos!: number;
+
   @Column({ type: "int" })
   garantia_meses!: number;
 

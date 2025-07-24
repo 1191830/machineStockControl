@@ -35,6 +35,8 @@ export default function VendaCard({ item, onEdit, onDelete }: Props) {
         <p>Data de Venda: {new Date(item.dataVenda).toLocaleDateString()}</p>
         <p>Preço Compra: {precoCompra.toFixed(2)} €</p>
         <p>Preço Venda: {precoVenda.toFixed(2)} €</p>
+        <p>Gastos: {item.gastos} €</p>
+        <p>Lucro: {(precoVenda - precoCompra - item.gastos).toFixed(2)} €</p>
         <p>Garantia: {item.garantiaMeses} meses</p>
         <p>Contacto Comprador: {item.contactoComprador}</p>
 

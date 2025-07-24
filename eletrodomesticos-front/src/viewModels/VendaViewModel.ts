@@ -5,6 +5,7 @@ export interface VendaViewModel {
   eletrodomestico: EletrodomesticoViewModel;
   dataVenda: string;
   precoVenda: number;
+  gastos: number;
   garantiaMeses: number;
   contactoComprador: string;
 }

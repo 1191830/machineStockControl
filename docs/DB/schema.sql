@@ -37,6 +37,7 @@ CREATE TABLE Vendas (
     eletrodomestico_id INTEGER REFERENCES Eletrodomesticos(id),
     data_venda DATE NOT NULL,
     preco_venda DECIMAL(10, 2) NOT NULL,
+    gastos DECIMAL(10, 2) NOT NULL DEFAULT 0.00,
     garantia_meses INTEGER NOT NULL,
     contacto_comprador VARCHAR(100) NOT NULL -- Já existia, mas garantimos que é VARCHAR
 );

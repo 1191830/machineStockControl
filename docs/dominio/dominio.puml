@@ -34,6 +34,7 @@ entity "Vendas" as V {
   +eletrodomestico_id: INTEGER
   +data_venda: DATE
   +preco_venda: DECIMAL(10, 2)
+  +gastos: DECIMAL(10, 2)
   +garantia_meses: INTEGER
   +contacto_comprador: VARCHAR(100)
 }
