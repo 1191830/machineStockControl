@@ -179,6 +179,7 @@ export default function EletrodomesticosPage() {
       eletrodomestico: finalizingItem,
       dataVenda: data.data_venda,
       precoVenda: data.preco_venda,
+      gastos: data.gastos,
       garantiaMeses: data.garantia_meses,
       contactoComprador: data.contacto_comprador ?? "",
     };
