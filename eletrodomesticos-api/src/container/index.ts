@@ -30,6 +30,11 @@ import { IArranjoRealizadoRepository } from "../modules/arranjosRealizados/repos
 import { ArranjoRealizadoController } from "../modules/arranjosRealizados/controller/ArranjoRealizadoController";
 import { ArranjoRealizadoService } from "../modules/arranjosRealizados/service/ArranjoRealizadoService";
 import { ArranjoRealizadoRepository } from "../modules/arranjosRealizados/repositories/ArranjoRealizadoRepository";
+import { IDashboardService } from "../modules/dashboard/service/IDashboardService";
+import { DashboardService } from "../modules/dashboard/service/DashboardService";
+import { IDashboardRepository } from "../modules/dashboard/repositories/IDashboardRepository";
+import { DashboardRepository } from "../modules/dashboard/repositories/DashboardRepository";
+import { DashboardController } from "../modules/dashboard/controller/DashboardController";
 // ELETRODOMESTICOS
 // Registrar o serviço com a interface
 container.registerSingleton<IEletrodomesticoService>(
@@ -134,4 +139,22 @@ container.registerSingleton<IArranjoRealizadoRepository>(
 // Registrar o controller
 container.registerSingleton<ArranjoRealizadoController>(
   ArranjoRealizadoController
+);
+
+//Dashbpoard
+// Registrar o serviço com a interface
+container.registerSingleton<IDashboardService>(
+  "IDashboardService",
+  DashboardService
+);
+
+// Registrar o repositório com a interface
+container.registerSingleton<IDashboardRepository>(
+  "IDashboardRepository",
+  DashboardRepository
+);
+
+// Registrar o controller
+container.registerSingleton<DashboardController>(
+  DashboardController
 );

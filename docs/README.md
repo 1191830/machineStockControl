@@ -45,7 +45,9 @@ Este projeto visa o desenvolvimento de um sistema para controlo de stock de elet
 ## How to
 
 Run docker compose to get the postgres db and pg admin
+docker run --name redis-dashboard -p 6379:6379 -d redis
 Access pgadmin through port 5050 enter username and password to pgadmin and select the bd eletrodomesticos.
+docker exec -it redis-dashboard redis-cli para aceder ao redis
 Run node with command npm run dev
 
 # BE + DB containeraised
